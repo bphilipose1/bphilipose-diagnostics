@@ -1,11 +1,11 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 const experiences = [
   {
     company: "Meta – Contract",
     role: "Algorithms Engineer V",
-    period: "June 2024 – Present",
+    period: "June 2025 – Present",
     location: "Redmond, WA",
     highlight: "87% Latency Reduction",
     bullets: [
@@ -77,7 +77,6 @@ const experiences = [
       "Designed automated test cases for real-time vehicle behavior evaluation."
     ],
     tech: ["SoapUI", "AV Testing", "Automated QA"],
-
   },
   {
     company: "Federal Way Public Schools",
@@ -96,128 +95,174 @@ const experiences = [
 ];
 
 export default function ExperienceTimeline() {
+  const containerRef = useRef(null);
+  
+  // Progress line logic
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end center"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
-    <div className="py-12">
-      <h3 className="text-2xl font-mono mb-10 text-blue-400">01_professional_experience</h3>
+    <div className="py-12" ref={containerRef}>
+      <h3 className="text-2xl font-mono mb-16 text-blue-400">01_professional_experience</h3>
       
-      {/* Container with margin-left (ml-32+) to prevent education markers from cutting off */}
-      <div className="relative border-l-2 border-slate-800 ml-32 md:ml-48 space-y-12">
-        {experiences.map((exp, index) => (
-          <React.Fragment key={index}>
-            
-            {/* 🎓 M.S. GRADUATION CHECKPOINT - Pinned to SU Research */}
-            {exp.company === "Seattle University" && exp.role === "Machine Learning Researcher" && (
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="absolute right-full mr-6 -mt-2 flex items-center z-10"
-              >
-                <div className="bg-blue-600/10 text-blue-400 border border-blue-500/30 text-[10px] font-mono px-3 py-1 rounded-sm shadow-[0_0_15px_rgba(59,130,246,0.1)] uppercase tracking-tight">
-                  MS_GRAD_COMPLETE // 2025
-                </div>
-                <div className="w-6 h-[1px] bg-blue-500/30"></div>
-              </motion.div>
-            )}
+      <div className="relative ml-32 md:ml-48">
+        
+        {/* The Execution Thread (Animated Line) */}
+        <div className="absolute left-0 top-2 bottom-0 w-[2px] bg-slate-900" />
+        <motion.div 
+          style={{ scaleY, originY: 0 }}
+          className="absolute left-0 top-2 bottom-0 w-[2px] bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] z-10"
+        />
 
-            {/* 🎓 B.S. GRADUATION CHECKPOINT - After AWS Capstone period */}
-            {exp.company === "NIST" && index === 3 && (
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="absolute right-full mr-6 -mt-2 flex items-center z-10"
-              >
-                <div className="bg-cyan-600/10 text-cyan-400 border border-cyan-500/30 text-[10px] font-mono px-3 py-1 rounded-sm shadow-[0_0_15px_rgba(34,211,238,0.1)] uppercase tracking-tight">
-                  BS_GRAD_COMPLETE // 2025
-                </div>
-                <div className="w-6 h-[1px] bg-cyan-500/30"></div>
-              </motion.div>
-            )}
-
-            {/* EXPERIENCE CARD with Scroll Reveal */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="relative pl-8 group"
-            >
-              {/* Timeline Marker (The glowing blue dot) */}
-              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-950 shadow-[0_0_10px_rgba(59,130,246,0.5)] group-hover:scale-125 transition-transform duration-300 z-20"></div>
+        <div className="space-y-24 relative">
+          {experiences.map((exp, index) => (
+            <React.Fragment key={index}>
               
-              <div className="flex flex-col md:flex-row md:justify-between items-start mb-2">
-                <div>
-                  <h4 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{exp.role}</h4>
-                  <p className="text-slate-400 font-medium">{exp.company}</p>
-                </div>
-                <span className="text-xs font-mono text-slate-500 bg-slate-900 px-3 py-1 rounded-full border border-slate-800 mt-2 md:mt-0">
-                  {exp.period}
-                </span>
-              </div>
-
-              {exp.highlight && (
-                <div className="inline-block mb-4 px-3 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest">
-                  Impact: {exp.highlight}
-                </div>
+              {/* 🎓 MS GRAD CHECKPOINT */}
+              {exp.role === "Algorithms Engineer V" && (
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="absolute right-full mr-1 mt-10 flex items-center z-30"
+                >
+                  <div className="bg-blue-600/10 text-blue-400 border border-blue-500/30 text-[9px] font-mono px-3 py-1 rounded-sm shadow-[0_0_15px_rgba(59,130,246,0.1)] uppercase tracking-tight">
+                    MS_GRAD_COMPLETE // JUN 2025
+                  </div>
+                  <div className="w-8 h-[1px] bg-blue-500/30"></div>
+                </motion.div>
               )}
 
-              <ul className="space-y-2 mb-6 max-w-3xl">
-                {exp.bullets.map((bullet, i) => (
-                  <li key={i} className="text-slate-400 text-sm flex items-start">
-                    <span className="text-blue-500 mr-2 font-bold">▹</span> {bullet}
-                  </li>
-                ))}
-              </ul>
+              {/* 🎓 BS GRAD CHECKPOINT */}
+              {exp.role === "Algorithms Engineer V" && (
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="absolute right-full mr-1 mt-44 flex items-center z-30"
+                >
+                  <div className="bg-cyan-600/10 text-cyan-400 border border-cyan-500/30 text-[9px] font-mono px-3 py-1 rounded-sm shadow-[0_0_15px_rgba(34,211,238,0.1)] uppercase tracking-tight">
+                    BS_GRAD_COMPLETE // MAR 2025
+                  </div>
+                  <div className="w-8 h-[1px] bg-cyan-500/30"></div>
+                </motion.div>
+              )}
 
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-900/50">
-                <div className="flex flex-wrap gap-2">
-                  {exp.tech.map((t, i) => (
-                    <span key={i} className="text-[10px] font-mono bg-slate-800/30 text-slate-500 px-2 py-0.5 rounded border border-slate-800">
-                      {t}
-                    </span>
-                  ))}
+              {/* 🎓 HS GRAD CHECKPOINT */}
+              {exp.company === "Federal Way Public Schools" && (
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute right-full mr-1 -mt-12 flex items-center z-30"
+                >
+                  <div className="bg-slate-800/50 text-slate-500 border border-slate-700 text-[9px] font-mono px-3 py-1 rounded-sm uppercase tracking-tight">
+                    HS_DIPLOMA_COMPLETE // JUN 2021
+                  </div>
+                  <div className="w-8 h-[1px] bg-slate-700"></div>
+                </motion.div>
+              )}
+
+              {/* EXPERIENCE CARD */}
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="relative pl-12 group"
+              >
+                {/* Hex Address Index */}
+                <span className="absolute -left-16 top-1 font-mono text-[10px] text-slate-700 group-hover:text-blue-500/50 transition-colors">
+                  0x0{experiences.length - index}
+                </span>
+
+                {/* Timeline Marker */}
+                <div className="absolute -left-[7.5px] top-1 z-20">
+                  <div className={`w-4 h-4 rounded-full bg-slate-950 border-2 transition-all duration-300 group-hover:scale-125 ${
+                    exp.period.includes("Present") ? "border-blue-400" : "border-slate-700 group-hover:border-blue-500"
+                  }`}>
+                    {exp.period.includes("Present") && (
+                      <div className="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-75" />
+                    )}
+                    <div className={`absolute inset-1 rounded-full ${
+                       exp.period.includes("Present") ? "bg-blue-400" : "bg-slate-800 group-hover:bg-blue-500"
+                    }`} />
+                  </div>
                 </div>
 
-                {exp.externalLinks && exp.externalLinks.length > 0 && (
-                  <div className="flex gap-3">
-                    {exp.externalLinks.map((link, i) => (
-                      <a 
-                        key={i}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] font-mono text-blue-400 bg-blue-500/5 border border-blue-500/20 px-3 py-1 rounded hover:bg-blue-500/20 transition-all flex items-center gap-1"
-                      >
-                        {link.label}
-                        <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                      </a>
-                    ))}
+                {/* Header Information */}
+                <div className="flex flex-col md:flex-row md:justify-between items-start mb-4">
+                  <div className="max-w-xl">
+                    <h4 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors leading-tight">
+                      {exp.role}
+                    </h4>
+                    <p className="text-slate-400 font-mono text-sm">{exp.company}</p>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-500 bg-slate-900/50 px-3 py-1 rounded border border-slate-800 mt-2 md:mt-0">
+                    [{exp.period}]
+                  </span>
+                </div>
+
+                {/* Performance Highlight Tag */}
+                {exp.highlight && (
+                  <div className="inline-flex items-center gap-2 mb-4 px-2 py-0.5 rounded-sm bg-blue-500/5 border border-blue-500/10 text-blue-400/80 text-[10px] font-mono font-bold uppercase tracking-tighter">
+                    <span className="w-1 h-1 bg-blue-400 rounded-full animate-pulse" />
+                    STATUS_IMPACT: {exp.highlight}
                   </div>
                 )}
-              </div>
-            </motion.div>
 
-            {/* 🎓 HS GRADUATION CHECKPOINT - Pinned to FWPS */}
-            {exp.company === "Federal Way Public Schools" && (
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="absolute right-full mr-6 mt-12 flex items-center z-10"
-              >
-                <div className="bg-slate-800/50 text-slate-500 border border-slate-700 text-[10px] font-mono px-3 py-1 rounded-sm uppercase tracking-tight">
-                  HS_DIPLOMA_COMPLETE // 2021
+                {/* Bullet Points */}
+                <ul className="space-y-3 mb-6 max-w-2xl">
+                  {exp.bullets.map((bullet, i) => (
+                    <li key={i} className="text-slate-400 text-sm leading-relaxed flex items-start">
+                       <span className="text-blue-500/50 mr-3 mt-1.5 text-[8px]">▶</span>
+                       {bullet}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tech & Links Footer */}
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-900/50">
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tech.map((t, i) => (
+                      <span key={i} className="text-[9px] font-mono text-slate-500 border border-slate-800/50 px-2 py-0.5 rounded hover:text-blue-400 hover:border-blue-900/50 transition-colors">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {exp.externalLinks && exp.externalLinks.length > 0 && (
+                    <div className="flex gap-3">
+                      {exp.externalLinks.map((link, i) => (
+                        <a 
+                          key={i}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[10px] font-mono text-blue-400 bg-blue-500/5 border border-blue-500/20 px-3 py-1 rounded hover:bg-blue-500/20 transition-all flex items-center gap-1"
+                        >
+                          {link.label}
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="w-6 h-[1px] bg-slate-700"></div>
               </motion.div>
-            )}
-
-          </React.Fragment>
-        ))}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </div>
   );
