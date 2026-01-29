@@ -1,16 +1,16 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import ProjectCard from '../components/ProjectCard'; 
 import ExperienceTimeline from '../components/ExperienceTimeline'; 
 import SkillsMatrix from '../components/SkillsMatrix';
 import EducationBIOS from '../components/EducationBIOS';
 import HeadRender from '../components/HeadRender';
+import ProjectGrid from '../components/ProjectGrid';
 import resumeFile from '../assets/Benjamin_Philipose_Resume.pdf';
 
 export default function Home() {
   const { scrollY } = useScroll();
   
-  // Subtle background parallax: The grid moves slower than the content (Firewatch trick)
+  // Subtle background parallax: The grid moves slower than the content
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -200]);
 
   return (
@@ -18,17 +18,17 @@ export default function Home() {
       
       {/* 🌌 GLOBAL PARALLAX BACKGROUND GRID */}
       <motion.div 
-        style={{ y: backgroundY }}
-        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
-        active={{ 
+        style={{ 
+          y: backgroundY,
           backgroundImage: 'linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)', 
           backgroundSize: '60px 60px' 
         }}
+        className="fixed inset-0 z-0 opacity-20 pointer-events-none"
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         
-        {/* 01. HERO SECTION (Reveal from Top) */}
+        {/* 01. HERO SECTION */}
         <motion.section 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function Home() {
               </button>
               <a 
                 href={resumeFile}
-                download="Benjamin_Philipose_Resume.pdf" // This forces the download
+                download="Benjamin_Philipose_Resume.pdf"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="border border-slate-700 hover:border-slate-500 text-slate-300 px-6 py-3 rounded-lg transition-all text-center font-mono text-sm"
@@ -72,17 +72,8 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* 02. FEATURED PROJECTS (Scroll Reveal) */}
-        <section className="py-12 border-t border-slate-900">
-          <h3 className="text-2xl font-mono mb-8 text-white flex items-center">
-            <span className="text-blue-500 mr-2">/</span> 01_featured_work
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <ProjectCard title="fMRI GNNs" tag="Neuroscience" />
-            <ProjectCard title="AV Simulation" tag="Systems" />
-            <ProjectCard title="Quantization" tag="MLoPS" />
-          </div>
-        </section>
+        {/* 02. FEATURED PROJECTS (Abstracted Grid) */}
+        <ProjectGrid />
 
         {/* 03. PROFESSIONAL TIMELINE */}
         <section className="py-12">
