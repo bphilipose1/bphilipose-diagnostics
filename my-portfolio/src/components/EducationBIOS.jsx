@@ -123,7 +123,7 @@ export default function EducationBIOS() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
               <div>
                 <p className="text-cyan-400 text-[11px] mb-1 font-bold tracking-widest">NODE: B.S. COMPUTER ENGINEERING & CS</p>
-                <h4 className="text-white font-bold text-xl tracking-tight leading-tight">
+                <h4 className="text-white font-bold text-xl tracking-tight leading-tigh group-hover:text-blue-400 transition-colors">
                   Double Major / Accelerated Track
                 </h4>
                 <p className="text-slate-500 text-xs mt-1 italic">Seattle University // 2021 – 2025</p>

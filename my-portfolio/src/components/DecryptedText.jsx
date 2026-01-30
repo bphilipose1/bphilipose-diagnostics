@@ -22,7 +22,7 @@ const DecryptedText = ({ text, speed = 40, delay = 0 }) => {
         );
 
         if (iteration >= text.length) clearInterval(interval);
-        iteration += 1 / 3; // Decrypts 1 letter every 3 frames
+        iteration += 1 / 2; // Decrypts 1 letter every 2 frames
       }, speed);
     }, delay);
 

@@ -1,20 +1,40 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import ExperienceTimeline from '../components/ExperienceTimeline'; 
+import ExperienceTimeline from '../components/Experience/ExperienceTimeline'; 
 import SkillsMatrix from '../components/SkillsMatrix';
 import EducationBIOS from '../components/EducationBIOS';
 import HeadRender from '../components/HeadRender';
 import ProjectGrid from '../components/ProjectGrid';
 import resumeFile from '../assets/Benjamin_Philipose_Resume.pdf';
+import Navbar from '../components/Navbar';
 
 export default function Home() {
   const { scrollY } = useScroll();
   
-  // Subtle background parallax: The grid moves slower than the content
+  // Subtle background parallax
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -200]);
+
+  // Helper function for the Hero CTA to scroll to projects
+  const scrollToProjects = () => {
+    const element = document.getElementById('projects');
+    if (element) {
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
+      {/* 00. FIXED SMART NAVBAR */}
+      <Navbar />
       
       {/* 🌌 GLOBAL PARALLAX BACKGROUND GRID */}
       <motion.div 
@@ -26,7 +46,7 @@ export default function Home() {
         className="fixed inset-0 z-0 opacity-20 pointer-events-none"
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20"> 
         
         {/* 01. HERO SECTION */}
         <motion.section 
@@ -51,16 +71,23 @@ export default function Home() {
             <p className="text-slate-400 text-lg mb-8 max-w-md leading-relaxed">
               Architecting 3D generative pipelines and optimizing embedded computer vision for resource-constrained hardware.
             </p>
+            
             <div className="flex gap-4 font-mono text-sm">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-500/20">
-                _view_research
+              {/* PRIMARY CTA: Initialize Demo */}
+              <button 
+                onClick={scrollToProjects}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-500/20 active:scale-95"
+              >
+                _initialize_demo
               </button>
+              
+              {/* SECONDARY CTA: Resume */}
               <a 
                 href={resumeFile}
                 download="Benjamin_Philipose_Resume.pdf"
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="border border-slate-700 hover:border-slate-500 text-slate-300 px-6 py-3 rounded-lg transition-all text-center font-mono text-sm"
+                className="border border-slate-700 hover:border-slate-500 text-slate-300 px-6 py-3 rounded-lg transition-all text-center font-mono"
               >
                 _get_resume.pdf
               </a>
@@ -72,24 +99,27 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* 02. FEATURED PROJECTS (Abstracted Grid) */}
-        <ProjectGrid />
+        {/* 02. FEATURED PROJECTS */}
+        <section id="projects" className="py-20">
+          <ProjectGrid />
+        </section>
 
         {/* 03. PROFESSIONAL TIMELINE */}
-        <section className="py-12">
+        <section id="experience" className="py-20">
           <ExperienceTimeline />
         </section>
 
         {/* 04. EDUCATION BIOS */}
-        <section className="py-12">
+        <section className="py-20">
           <EducationBIOS />
         </section>
 
         {/* 05. SYSTEM SKILLS MATRIX */}
-        <section className="py-12">
+        <section id="skills" className="py-20">
           <SkillsMatrix />
         </section>
 
+        
         {/* 06. CONTACT TERMINAL */}
         <footer className="py-20 border-t border-slate-900 text-center relative z-20">
           <p className="text-slate-500 font-mono text-xs mb-4">TERMINAL_SESSION_END: 2026</p>
