@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://bphilipose1.github.io/bphilipose.github.io",
+  "homepage": "https://bphilipose1.github.io/bphilipose-diagnostics/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
