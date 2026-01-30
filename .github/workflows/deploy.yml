@@ -12,26 +12,29 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./my-portfolio # This tells GitHub your code is in that folder
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: './my-portfolio/package-lock.json'
+          # Removed the nested path here
+          cache-dependency-path: './package-lock.json'
+
       - name: Install dependencies
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./my-portfolio/dist # Path to the build output
+          # Now uploading the dist folder from the root
+          path: ./dist
 
   deploy:
     environment:
