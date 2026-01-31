@@ -33,7 +33,7 @@ export const AchievementCard = ({ exp }) => {
       initial="hidden"
       whileInView="visible"
       whileHover="hoverState"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.1, margin: "-100px" }}
       className="relative pl-12 mb-24 group cursor-pointer" 
     >
       {/* MARKER: Locked to line */}

@@ -37,7 +37,7 @@ export default function EducationBIOS() {
     <motion.div 
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={containerVariants}
       className="py-12 border-t border-slate-900 font-mono relative overflow-hidden"
     >

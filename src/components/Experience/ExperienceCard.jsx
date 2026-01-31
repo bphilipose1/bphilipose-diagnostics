@@ -10,7 +10,7 @@ export const ExperienceCard = ({ exp, index, total }) => {
       // FIX: Removed x: 20. Marker now appears stationary on the line.
       initial={{ opacity: 0, scale: 0.98 }} 
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.1, margin: "-100px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="relative pl-12 group mb-16"
     >

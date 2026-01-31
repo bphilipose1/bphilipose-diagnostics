@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useMotionValueEvent, useSpring } from 'framer-motion';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { scrollY, scrollYProgress } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -101,7 +103,11 @@ export default function Navbar() {
         className="relative flex items-center gap-4 md:gap-8 px-6 py-3 rounded-full border border-slate-800 bg-slate-950/80 backdrop-blur-md shadow-2xl shadow-blue-500/10 pointer-events-auto overflow-hidden"
       >
         <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            // Adding a timestamp to the state forces the Router to see this as a NEW navigation event
+            navigate('/', { replace: true, state: { refresh: Date.now() } });
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+          }}
           className="text-blue-500 font-mono font-bold text-sm tracking-tighter hover:brightness-125 transition-all"
         >
           BP_LOG_01
