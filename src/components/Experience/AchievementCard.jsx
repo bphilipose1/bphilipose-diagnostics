@@ -4,7 +4,6 @@ import { InteractiveBullet } from './InteractiveBullet';
 
 export const AchievementCard = ({ exp }) => {
   const containerVariants = {
-    // FIX: x is now 0 by default to prevent movement on entry
     hidden: { opacity: 0, scale: 0.98, x: 0 },
     visible: { 
       opacity: 1, 
@@ -12,7 +11,6 @@ export const AchievementCard = ({ exp }) => {
       x: 0,
       transition: { duration: 0.5, ease: "easeOut" }
     },
-    // Ensure parent doesn't shift x on hover
     hoverState: { x: 0 }
   };
 
@@ -49,10 +47,25 @@ export const AchievementCard = ({ exp }) => {
         variants={{
           hidden: { x: 0 },
           visible: { x: 0 },
-          hoverState: { x: 10 } // Inner card body shifts, marker stays static
+          hoverState: { x: 10 } 
         }}
         className="bg-amber-500/5 border border-amber-500/20 p-4 rounded-sm backdrop-blur-sm relative overflow-hidden group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-colors duration-300"
       >
+        {/* THE "WINNER" BACKGROUND TEXT */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: 20 },
+            visible: { opacity: 0.03, x: 0 }, // Very subtle default
+            hoverState: { opacity: 0.1, x: -10, transition: { duration: 0.4 } } // Lights up on hover
+          }}
+          className="absolute top-[-10px] right-[-10px] pointer-events-none z-0 select-none"
+        >
+          <span className="text-7xl font-black italic text-amber-500 uppercase tracking-tighter">
+            WINNER
+          </span>
+        </motion.div>
+
+        {/* SCANLINE EFFECT */}
         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 bg-[linear-gradient(rgba(245,158,11,0.05)_50%,transparent_50%)] bg-[length:100%_4px] transition-opacity duration-300" />
 
         <div className="flex justify-between items-center relative z-10">
