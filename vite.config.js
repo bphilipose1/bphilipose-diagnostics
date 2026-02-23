@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/bphilipose-diagnostics/', // THIS MUST MATCH THE REPO NAME
+  base: '/', // For bphilipose.github.io, this must be '/'
 })

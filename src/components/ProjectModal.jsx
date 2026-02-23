@@ -4,9 +4,6 @@ import DecryptedText from './DecryptedText';
 
 // Helper component for counting up numbers in metrics
 const CountUp = ({ value }) => {
-  const num = parseFloat(value);
-  const suffix = value.replace(/[0-9.]/g, '');
-  
   return (
     <motion.span
       initial={{ opacity: 0 }}

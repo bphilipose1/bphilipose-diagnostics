@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { InteractiveBullet } from './InteractiveBullet';
 
-export const ExperienceCard = ({ exp, index, total }) => {
+export const ExperienceCard = ({ exp }) => {
   const isPresent = exp.period.includes("Present");
 
   return (

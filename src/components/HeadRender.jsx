@@ -13,11 +13,12 @@ export default function HeadRender() {
 
   const rotateX = useTransform(smoothY, [-300, 300], [10, -10]);
   const rotateY = useTransform(smoothX, [-300, 300], [-10, 10]);
+  const tensorBits = Array.from({ length: 144 }, (_, i) => i % 11 === 0 || i % 17 === 0);
 
   // Simulate Live Tensor Feed
   useEffect(() => {
     const interval = setInterval(() => {
-      setInferenceData(prev => ({
+      setInferenceData(() => ({
         conf: (0.98 + Math.random() * 0.01).toFixed(4),
         logs: [Math.random().toFixed(4), Math.random().toFixed(4), Math.random().toFixed(4)].slice(0, 3)
       }));
@@ -47,7 +48,7 @@ export default function HeadRender() {
         className="relative z-10 w-80 h-80 rounded-lg border border-white/5 overflow-hidden bg-black shadow-2xl"
       >
         {/* Layer A: The Profile Image (Base) */}
-        <img src={profileImg} className="w-full h-full object-cover grayscale opacity-50 contrast-125 brightness-75 mix-blend-screen" />
+        <img src={profileImg} alt="Profile render" className="w-full h-full object-cover grayscale opacity-50 contrast-125 brightness-75 mix-blend-screen" />
 
         {/* Layer B: Grad-CAM Feature Map (The "Heatmap") */}
         <div 
@@ -57,9 +58,9 @@ export default function HeadRender() {
 
         {/* Layer C: Simulated Tensor Grid */}
         <div className="absolute inset-0 grid grid-cols-12 grid-rows-12 opacity-[0.15]">
-          {[...Array(144)].map((_, i) => (
+          {tensorBits.map((isOne, i) => (
             <div key={i} className="border-[0.5px] border-blue-500/20 text-[3px] text-blue-300 flex items-center justify-center">
-              {Math.random() > 0.9 ? '1' : ''}
+              {isOne ? "1" : ""}
             </div>
           ))}
         </div>

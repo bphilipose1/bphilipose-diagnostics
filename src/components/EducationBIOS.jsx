@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import DecryptedText from './DecryptedText'; 
 
@@ -126,7 +126,7 @@ export default function EducationBIOS() {
                 <h4 className="text-white font-bold text-xl tracking-tight leading-tigh group-hover:text-blue-400 transition-colors">
                   Double Major / Accelerated Track
                 </h4>
-                <p className="text-slate-500 text-xs mt-1 italic">Seattle University // 2021 – 2025</p>
+                <p className="text-slate-500 text-xs mt-1 italic">Seattle University // 2021 - 2025</p>
                 
                 {/* 4.0 GPA Flex Box */}
                 <div className="mt-4 flex items-center gap-3">
@@ -166,3 +166,4 @@ export default function EducationBIOS() {
     </motion.div>
   );
 }
+

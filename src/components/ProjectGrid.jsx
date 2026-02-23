@@ -5,39 +5,39 @@ import ProjectModal from './ProjectModal';
 const projectData = [
   {
     id: 1,
-    title: "Meta Algorithms Engineer",
-    tag: "Embedded AI",
+    title: "fMRI GNNs",
+    tag: "Neuroscience",
     metrics: [
-      { value: "87%", label: "Latency Reduction" },
-      { value: "C++", label: "Production Stack" }
+      { value: "85.98%", label: "Accuracy" },
+      { value: "GCN/CAT", label: "Architecture" }
     ],
-    stack: ["C++", "PyTorch", "TFLite", "Netron", "Embedded Systems"],
-    constraint: "Porting complex computer vision models (ResNet, EfficientNet) from Python to resource-constrained embedded platforms while maintaining 1:1 numerical accuracy.",
-    implementation: "Optimized inference by removing unsupported TFLite operations and reducing channel widths. Developed high-performance C++ primitives for image processing and implemented SPI blob data pipelines for real-time hardware-in-the-loop validation."
+    stack: ["PyTorch", "GNNs", "Transformers", "CUDA"],
+    constraint: "Standard CNNs struggle with non-Euclidean brain connectivity. Diagnosis requires modeling complex regional interactions within fMRI scans.",
+    implementation: "Implemented a hybrid Graph Convolutional Network and Community-Aware Transformer (CAT). Optimized data throughput with custom CUDA kernels to identify biomarkers for autism detection."
   },
   {
     id: 2,
-    title: "HFT Arbitrage Detector",
-    tag: "Distributed Systems",
+    title: "AV Simulation",
+    tag: "Systems",
     metrics: [
-      { value: "UDP", label: "Protocol" },
-      { value: "Multi-threaded", label: "Architecture" }
+      { value: "<1ms", label: "Data Latency" },
+      { value: "NIST", label: "Project" }
     ],
-    stack: ["Python", "Networking", "Graph Algorithms", "HFT"],
-    constraint: "High-frequency data streams require microsecond responses to capture market cycles before they disappear.",
-    implementation: "Designed a real-time arbitrage detection system leveraging the Bellman-Ford algorithm for cycle detection over UDP-based price feeds. Optimized data processing via multi-threading to minimize system latency."
+    stack: ["C++", "ROS2", "NS-3", "MPI"],
+    constraint: "Autonomous vehicle safety testing requires microsecond-level synchronization between network (NS-3) and physics (ROS2) simulators.",
+    implementation: "Architected a high-performance C++ bridge for real-time synchronization. Leveraged distributed MPI processes to scale simulation complexity without sacrificing temporal accuracy."
   },
   {
     id: 3,
-    title: "AV Simulation Sync",
-    tag: "Systems / NIST",
+    title: "NPU Quantization",
+    tag: "Embedded AI",
     metrics: [
-      { value: "Real-time", label: "Performance" },
-      { value: "Low-Latency", label: "Data Transfer" }
+      { value: "87%", label: "Latency Reduction" },
+      { value: "NPU", label: "Target Runtime" }
     ],
-    stack: ["C++", "ROS2", "NS-3", "Parallel Programming"],
-    constraint: "Autonomous vehicle (AV) safety testing requires high-performance, low-latency data exchange between disparate simulation environments.",
-    implementation: "Developed a C++ data transfer tool to enable seamless multi-simulation connectivity. Optimized performance by integrating NS-3 and ROS2, leveraging algorithmic efficiency and object-oriented design to improve sensing platform accuracy."
+    stack: ["C++", "PyTorch", "TFLite", "Netron", "NPU Optimization"],
+    constraint: "High-parameter vision models were too heavy for embedded NPUs, and unsupported operators in converted graphs blocked reliable fixed-point deployment.",
+    implementation: "Built a production C++ inference pipeline, converted models to quantized TFLite with manual calibration, performed Netron graph surgery for unsupported ops, and validated Python/C++ parity for stable real-time inference."
   }
 ];
 

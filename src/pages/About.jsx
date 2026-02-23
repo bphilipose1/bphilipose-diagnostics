@@ -62,26 +62,26 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 border-b border-slate-800 pb-8 text-[11px]">
              <div>
                <p className="text-slate-500 mb-1">USER_ROLE</p>
-               <p className="text-slate-200">ML_ALGO_ENGINEER</p>
+               <p className="text-slate-200">ALGORITHMS_ENGINEER_V</p>
              </div>
              <div>
                <p className="text-slate-500 mb-1">INTERESTS</p>
-               <p className="text-slate-200">3D_GEN // GNNs</p>
+               <p className="text-slate-200">EMBEDDED_AI // GNNs</p>
              </div>
              <div>
                <p className="text-slate-500 mb-1">ENVIRONMENT</p>
-               <p className="text-slate-200">LINUX // CUDA</p>
+               <p className="text-slate-200">LINUX // C++ // CUDA</p>
              </div>
              <div>
                <p className="text-slate-500 mb-1">OPTIMIZATION</p>
-               <p className="text-slate-200">LATENCY_MINIMALISM</p>
+               <p className="text-slate-200">ML_LATENCY // PERFORMANCE</p>
              </div>
           </div>
 
           <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
-            I am a Software and Algorithms Engineer focused on the intersection of Machine Learning and Systems Programming. 
-            My work spans from high-level Graph Neural Networks to low-level C++ optimization for embedded hardware. 
-            I thrive in resource-constrained environments where every clock cycle and byte of memory matters.
+            I am an Algorithms Engineer focused on building practical machine learning systems from research to deployment.
+            My work spans model development, training, and optimization across PyTorch, C++, and embedded inference pipelines.
+            I enjoy solving applied ML problems where model quality and system performance both matter.
           </p>
         </motion.div>
       </section>

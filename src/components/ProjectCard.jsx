@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import React from "react";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
 export default function ProjectCard({ id, title, tag }) {
   const x = useMotionValue(0);
@@ -29,14 +29,14 @@ export default function ProjectCard({ id, title, tag }) {
   };
 
   return (
-    <div 
+    <div
       className="group cursor-pointer"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: "1000px" }}
     >
       <motion.div
-        layoutId={`card-${id}`} // Crucial: Matches the ID in ProjectModal
+        layoutId={`card-${id}`}
         style={{
           rotateX: springX,
           rotateY: springY,
@@ -44,7 +44,7 @@ export default function ProjectCard({ id, title, tag }) {
         }}
         className="relative p-6 bg-slate-900 rounded-2xl border border-slate-800 group-hover:border-blue-500 transition-colors duration-500"
       >
-        <motion.div 
+        <motion.div
           layout
           className="flex justify-between items-start mb-4"
           style={{ transform: "translateZ(20px)" }}
@@ -53,7 +53,7 @@ export default function ProjectCard({ id, title, tag }) {
             {tag}
           </span>
         </motion.div>
-        
+
         <motion.div layout style={{ transform: "translateZ(40px)" }}>
           <h4 className="text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">
             {title}
@@ -62,15 +62,14 @@ export default function ProjectCard({ id, title, tag }) {
             Technical implementation and 3D optimization using {tag} architectures.
           </p>
         </motion.div>
-        
+
         <motion.div layout style={{ transform: "translateZ(30px)" }}>
           <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-white transition-colors flex items-center gap-1">
-            View Case Study <span className="group-hover:translate-x-1 transition-transform">→</span>
+            View Case Study <span className="group-hover:translate-x-1 transition-transform">-&gt;</span>
           </span>
         </motion.div>
 
-        {/* Backdrop Glow */}
-        <div 
+        <div
           className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"
           style={{ transform: "translateZ(-10px)" }}
         />

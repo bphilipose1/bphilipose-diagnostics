@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const DecryptedText = ({ text, speed = 40, delay = 0 }) => {
-  const [displayText, setDisplayText] = useState('');
-  // Character set for the scramble effect
-  const chars = '!<>-_\\/[]{}—=+*^?#________';
+  const [displayText, setDisplayText] = useState("");
+  const chars = "!<>-_\\/[]{}-=+*^?#________";
 
   useEffect(() => {
     let iteration = 0;
@@ -13,16 +12,16 @@ const DecryptedText = ({ text, speed = 40, delay = 0 }) => {
       interval = setInterval(() => {
         setDisplayText(
           text
-            .split('')
+            .split("")
             .map((letter, index) => {
               if (index < iteration) return text[index];
               return chars[Math.floor(Math.random() * chars.length)];
             })
-            .join('')
+            .join("")
         );
 
         if (iteration >= text.length) clearInterval(interval);
-        iteration += 1 / 2; // Decrypts 1 letter every 2 frames
+        iteration += 0.5;
       }, speed);
     }, delay);
 
