@@ -1,18 +1,28 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import ExperienceTimeline from '../components/Experience/ExperienceTimeline'; 
 import SkillsMatrix from '../components/SkillsMatrix';
 import EducationBIOS from '../components/EducationBIOS';
 import HeadRender from '../components/HeadRender';
-import ProjectGrid from '../components/ProjectGrid';
 import resumeFile from '../assets/Benjamin_Philipose_Resume.pdf';
 import Navbar from '../components/Navbar';
 
 export default function Home() {
   const { scrollY } = useScroll();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const glowX = useSpring(pointerX, { stiffness: 180, damping: 28 });
+  const glowY = useSpring(pointerY, { stiffness: 180, damping: 28 });
   
   // Subtle background parallax
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -200]);
+
+  const bioStats = [
+    { label: "USER_ROLE", value: "ALGORITHMS_ENGINEER_V" },
+    { label: "INTERESTS", value: "EMBEDDED_AI // GNNs" },
+    { label: "ENVIRONMENT", value: "LINUX // C++ // CUDA" },
+    { label: "OPTIMIZATION", value: "ML_LATENCY // PERFORMANCE" },
+  ];
 
   // Helper function for the Hero CTA to scroll to projects
   const scrollToProjects = () => {
@@ -99,9 +109,52 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* 02. FEATURED PROJECTS */}
-        <section id="projects" className="py-20">
-          <ProjectGrid />
+        {/* 02. DEVELOPER BIO */}
+        <section id="projects" className="py-10">
+          <div
+            className="relative p-8 md:p-10 bg-slate-950/70 border border-blue-500/20 rounded-2xl font-mono overflow-hidden"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              pointerX.set(e.clientX - rect.left);
+              pointerY.set(e.clientY - rect.top);
+            }}
+          >
+            <div className="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.25),transparent_45%)]" />
+            <motion.div
+              className="absolute pointer-events-none w-52 h-52 rounded-full bg-blue-400/10 blur-3xl"
+              style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
+            />
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+            <div className="absolute -top-24 -right-24 w-56 h-56 rounded-full border border-blue-500/10" />
+            <div className="absolute -bottom-28 -left-20 w-72 h-72 rounded-full border border-slate-700/20" />
+
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-6">
+                <h4 className="text-blue-400 text-xs uppercase tracking-[0.3em] font-bold">// Developer_Bio</h4>
+                <span className="text-[10px] text-blue-500/70 border border-blue-500/20 px-2 py-1 rounded">REV_05.0</span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 text-[11px]">
+                {bioStats.map((item) => (
+                  <motion.div
+                    key={item.label}
+                    whileHover={{ y: -3, borderColor: "rgba(59,130,246,0.45)" }}
+                    transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                    className="bg-slate-900/60 border border-slate-800 rounded-lg p-4"
+                  >
+                    <p className="text-slate-500 mb-1">{item.label}</p>
+                    <p className="text-slate-200">{item.value}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <p className="text-slate-300 text-sm leading-relaxed max-w-3xl border-l-2 border-blue-500/40 pl-6">
+                I am an Algorithms Engineer focused on building practical machine learning systems from research to deployment.
+                My work spans model development, training, and optimization across PyTorch, C++, and embedded inference pipelines.
+                I enjoy solving applied ML problems where model quality and system performance both matter.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* 03. PROFESSIONAL TIMELINE */}
@@ -119,8 +172,7 @@ export default function Home() {
           <SkillsMatrix />
         </section>
 
-        
-        {/* 06. CONTACT TERMINAL */}
+        {/* 07. CONTACT TERMINAL */}
         <footer className="py-20 border-t border-slate-900 text-center relative z-20">
           <p className="text-slate-500 font-mono text-xs mb-4">TERMINAL_SESSION_END: 2026</p>
           <div className="flex justify-center gap-8 font-mono text-sm">

@@ -26,29 +26,11 @@ export default function Layout({ children }) {
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,#020617_70%)]" />
 
       <header className="relative z-50 border-b border-slate-900/80 bg-slate-950/50 backdrop-blur-md sticky top-0">
-        <nav className="max-w-6xl mx-auto flex justify-between items-center p-6">
+        <nav className="max-w-6xl mx-auto flex items-center p-6">
           <Link to="/" className="group flex items-center gap-2 text-xl font-mono font-bold tracking-tighter">
             <span className="text-blue-500 group-hover:animate-pulse">_</span>
             <span className="hover:text-blue-400 transition-colors">BENJAMIN.ML</span>
           </Link>
-
-          <ul className="flex gap-8 text-[11px] font-mono uppercase tracking-widest text-slate-400">
-            <li>
-              <Link to="/" className="hover:text-blue-400 transition-colors flex items-center gap-1">
-                <span className="text-blue-600/50">01</span> Engineering
-              </Link>
-            </li>
-            <li>
-              <Link to="/projects" className="hover:text-blue-400 transition-colors flex items-center gap-1">
-                <span className="text-blue-600/50">02</span> Research
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="hover:text-blue-400 transition-colors flex items-center gap-1">
-                <span className="text-blue-600/50">03</span> System_Info
-              </Link>
-            </li>
-          </ul>
         </nav>
       </header>
 

@@ -125,7 +125,7 @@ export default function ExperienceTimeline() {
   return (
     <div className="py-24 bg-slate-950" ref={containerRef}>
       <div className="max-w-6xl mx-auto px-4">
-        <h3 className="text-2xl font-mono mb-20 text-blue-400">02_professional_experience</h3>
+        <h3 className="text-2xl font-mono mb-20 text-blue-400">_professional_experience</h3>
 
         <div className="relative ml-8 md:ml-32">
           <div className="absolute left-0 top-2 bottom-0 w-[2px] bg-slate-900" />
