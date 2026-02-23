@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://bphilipose1.github.io/",
+  "homepage": "https://bphilipose1.github.io/bphilipose-diagnostics/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -r https://github.com/bphilipose1/bphilipose.github.io.git"
+    "deploy": "gh-pages -d dist --repo https://github.com/bphilipose1/bphilipose-diagnostics.git"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
