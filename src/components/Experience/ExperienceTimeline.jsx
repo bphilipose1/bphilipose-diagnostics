@@ -5,17 +5,17 @@ import { AchievementCard } from "./AchievementCard";
 
 const experiences = [
   {
-    company: "Meta (Contract)",
+    company: "Meta",
     role: "Algorithms Engineer V",
     period: "June 2025 - Present",
     location: "Redmond, WA",
     highlight: "87% Latency Reduction",
     bullets: [
       "Reduced end-to-end latency by 87% in an embedded head-tracking pipeline by refactoring PyTorch inference flows into optimized C++.",
-      "Converted PyTorch models to quantized TFLite on NPUs, including manual calibration setup and Netron graph surgery for unsupported operators.",
+      "Converted PyTorch vision models to quantized TFLite on NPUs — manual calibration, Netron graph surgery for unsupported operators, full Python/C++ parity validation.",
       "Built real-time C++ image and sensor pipelines (debayering, format conversion, SPI, IMU synchronization) for stable low-latency execution on embedded hardware.",
-      "Trained and tuned lightweight detection/keypoint models with PyTorch DDP + SLURM under strict edge memory and compute constraints.",
-      "Led cross-functional validation across ML, firmware, and hardware teams to ensure Python/C++ parity for work presented to multiple Meta VPs.",
+      "Trained and tuned lightweight detection/keypoint models with PyTorch DDP + SLURM under strict edge memory and power constraints.",
+      "Drove cross-functional alignment across ML, firmware, and hardware teams (3 orgs); results reviewed and approved by multiple Meta VPs.",
     ],
     tech: ["C++", "PyTorch", "TFLite", "Netron", "NPU Optimization", "Embedded Systems", "SLURM"],
     externalLinks: [],
@@ -38,7 +38,7 @@ const experiences = [
   {
     type: "capstone",
     company: "Amazon Web Services (AWS)",
-    role: "Robotics Software Engineer",
+    role: "Robotics Software Engineer — Team Lead",
     period: "Sept 2023 - June 2024",
     location: "Seattle, WA",
     highlight: "AWS Availability Rover",
@@ -123,26 +123,24 @@ export default function ExperienceTimeline() {
   const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <div className="py-24 bg-slate-950" ref={containerRef}>
-      <div className="max-w-6xl mx-auto px-4">
-        <h3 className="text-2xl font-mono mb-20 text-blue-400">_professional_experience</h3>
+    <div ref={containerRef}>
+      <h3 className="text-2xl font-mono mb-20 text-blue-400">_professional_experience</h3>
 
-        <div className="relative ml-8 md:ml-32">
-          <div className="absolute left-0 top-2 bottom-0 w-[2px] bg-slate-900" />
+      <div className="relative ml-8 md:ml-32">
+        <div className="absolute left-0 top-2 bottom-0 w-[2px] bg-slate-900" />
 
-          <motion.div
-            style={{ scaleY, originY: 0 }}
-            className="absolute left-0 top-2 bottom-0 w-[2px] bg-blue-500 z-10 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
-          />
+        <motion.div
+          style={{ scaleY, originY: 0 }}
+          className="absolute left-0 top-2 bottom-0 w-[2px] bg-blue-500 z-10 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+        />
 
-          <div className="space-y-24 relative">
-            {experiences.map((exp, index) => {
-              if (exp.type === "achievement") {
-                return <AchievementCard key={index} exp={exp} />;
-              }
-              return <ExperienceCard key={index} exp={exp} />;
-            })}
-          </div>
+        <div className="space-y-24 relative">
+          {experiences.map((exp, index) => {
+            if (exp.type === "achievement") {
+              return <AchievementCard key={index} exp={exp} />;
+            }
+            return <ExperienceCard key={index} exp={exp} />;
+          })}
         </div>
       </div>
     </div>
