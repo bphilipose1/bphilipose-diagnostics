@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
-export default function ProjectCard({ id, title, tag }) {
+export default function ProjectCard({ id, title, tag, description, onClick }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -14,13 +14,8 @@ export default function ProjectCard({ id, title, tag }) {
 
   const handleMouseMove = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-
-    x.set(mouseX - width / 2);
-    y.set(mouseY - height / 2);
+    x.set(event.clientX - rect.left - rect.width / 2);
+    y.set(event.clientY - rect.top - rect.height / 2);
   };
 
   const handleMouseLeave = () => {
@@ -33,6 +28,7 @@ export default function ProjectCard({ id, title, tag }) {
       className="group cursor-pointer"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
       style={{ perspective: "1000px" }}
     >
       <motion.div
@@ -42,7 +38,7 @@ export default function ProjectCard({ id, title, tag }) {
           rotateY: springY,
           transformStyle: "preserve-3d",
         }}
-        className="relative p-6 bg-slate-900 rounded-2xl border border-slate-800 group-hover:border-blue-500 transition-colors duration-500"
+        className="relative p-6 bg-slate-900 rounded-2xl border border-slate-800 group-hover:border-blue-500 transition-colors duration-500 h-full"
       >
         <motion.div
           layout
@@ -59,7 +55,7 @@ export default function ProjectCard({ id, title, tag }) {
             {title}
           </h4>
           <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-            Technical implementation and 3D optimization using {tag} architectures.
+            {description}
           </p>
         </motion.div>
 
