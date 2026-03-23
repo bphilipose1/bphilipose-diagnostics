@@ -1,38 +1,24 @@
 import React, { useState } from "react";
-import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function SystemStatusBar() {
   const { scrollYProgress } = useScroll();
   const [bufferPercent, setBufferPercent] = useState(0);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setBufferPercent(Math.round(latest * 100));
-  });
-
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
+    const next = Math.round(latest * 100);
+    setBufferPercent(prev => prev === next ? prev : next);
   });
 
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 px-6 pb-6 pointer-events-none">
-      <div className="max-w-6xl mx-auto flex flex-col gap-2">
-        <div className="flex justify-between items-end font-mono text-[10px] text-blue-500/60 px-2">
-          <div className="flex gap-4">
-            <span>LOC: [47.3229 N, 122.3126 W]</span>
-            <span className="hidden md:inline">ENCODING: UTF-8</span>
-          </div>
-          <div className="text-right">
-            <span>BUFFER_LOAD: {bufferPercent}%</span>
-          </div>
+    <div className="fixed bottom-0 left-0 w-full z-50 px-6 pb-4 pointer-events-none">
+      <div className="max-w-6xl mx-auto flex justify-between items-end font-mono text-[10px] text-blue-500/60 px-2">
+        <div className="flex gap-4">
+          <span>LOC: [47.3229 N, 122.3126 W]</span>
+          <span className="hidden md:inline">ENCODING: UTF-8</span>
         </div>
-
-        <div className="h-1 w-full bg-slate-900 rounded-full border border-slate-800 overflow-hidden relative">
-          <motion.div
-            style={{ scaleX, transformOrigin: "0%" }}
-            className="absolute inset-0 bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
-          />
+        <div>
+          <span>BUFFER_LOAD: {bufferPercent}%</span>
         </div>
       </div>
     </div>

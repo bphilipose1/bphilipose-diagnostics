@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useMotionValueEvent, useSpring } from 'framer-motion';
+import { scrollToSection as scrollToSectionUtil } from '../utils/scroll';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   
   const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef(null); // Added for debouncing jitter
+  const scrollTimeoutRef = useRef(null);
 
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -31,8 +32,7 @@ export default function Navbar() {
     
     const observerOptions = {
       root: null,
-      // Focus detection on a narrow strip 20% from the top
-      rootMargin: '-20% 0px -75% 0px', 
+      rootMargin: '-20% 0px -75% 0px',
       threshold: 0
     };
 
@@ -40,14 +40,11 @@ export default function Navbar() {
       if (isScrollingRef.current) return;
 
       entries.forEach((entry) => {
-        // Only trigger if the section is occupying the "priority zone"
         if (entry.isIntersecting) {
-          // Debounce the update: wait for scroll jitter to settle
           if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-          
           scrollTimeoutRef.current = setTimeout(() => {
             setActiveSection(entry.target.id);
-          }, 50); // 50ms is the "sweet spot" to ignore jitter but feel fast
+          }, 50);
         }
       });
     }, observerOptions);
@@ -64,28 +61,14 @@ export default function Navbar() {
   }, []);
 
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (!element) return;
+    if (!document.getElementById(id)) return;
 
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
     isScrollingRef.current = true;
     setActiveSection(id);
+    scrollToSectionUtil(id);
 
-    const offset = 100;
-    const bodyRect = document.body.getBoundingClientRect().top;
-    const elementRect = element.getBoundingClientRect().top;
-    const elementPosition = elementRect - bodyRect;
-    const offsetPosition = elementPosition - offset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
-
-    // Increased timeout slightly to ensure the browser scroll settles
-    setTimeout(() => {
-      isScrollingRef.current = false;
-    }, 1000);
+    setTimeout(() => { isScrollingRef.current = false; }, 1000);
   };
 
   const navLinks = [

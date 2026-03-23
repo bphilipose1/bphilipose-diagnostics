@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Layout({ children }) {
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -25,14 +26,17 @@ export default function Layout({ children }) {
 
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,#020617_70%)]" />
 
-      <header className="relative z-50 border-b border-slate-900/80 bg-slate-950/50 backdrop-blur-md sticky top-0">
-        <nav className="max-w-6xl mx-auto flex items-center p-6">
-          <Link to="/" className="group flex items-center gap-2 text-xl font-mono font-bold tracking-tighter">
-            <span className="text-blue-500 group-hover:animate-pulse">_</span>
-            <span className="hover:text-blue-400 transition-colors">BENJAMIN.ML</span>
-          </Link>
-        </nav>
-      </header>
+      {/* Header only shown on non-home pages (Home uses its own floating Navbar) */}
+      {!isHome && (
+        <header className="relative z-50 border-b border-slate-900/80 bg-slate-950/50 backdrop-blur-md sticky top-0">
+          <nav className="max-w-6xl mx-auto flex items-center p-6">
+            <Link to="/" className="group flex items-center gap-2 text-xl font-mono font-bold tracking-tighter">
+              <span className="text-blue-500 group-hover:animate-pulse">_</span>
+              <span className="hover:text-blue-400 transition-colors">BENJAMIN.ML</span>
+            </Link>
+          </nav>
+        </header>
+      )}
 
       <main className="relative z-10 flex-grow max-w-6xl mx-auto w-full p-6">
         <AnimatePresence mode="wait">
@@ -48,15 +52,21 @@ export default function Layout({ children }) {
         </AnimatePresence>
       </main>
 
-      <footer className="relative z-10 p-10 border-t border-slate-900/50 text-center text-slate-500 font-mono text-[10px] tracking-widest">
+      <footer className="relative z-10 py-16 px-6 border-t border-slate-900 text-center font-mono">
+        <p className="text-slate-500 text-xs mb-4">TERMINAL_SESSION_END: 2026</p>
+        <div className="flex justify-center gap-8 text-sm mb-8">
+          <a href="mailto:philiposebenjamin@gmail.com" className="text-blue-400 hover:text-white transition-colors underline decoration-blue-500/30 underline-offset-4">email</a>
+          <a href="https://linkedin.com/in/bphilipose" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-white transition-colors underline decoration-blue-500/30 underline-offset-4">linkedin</a>
+          <a href="https://github.com/bphilipose1" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-white transition-colors underline decoration-blue-500/30 underline-offset-4">github</a>
+        </div>
         <div className="flex justify-center items-center gap-4 mb-2">
           <div className="h-px w-8 bg-slate-800" />
-          <p>
+          <p className="text-slate-600 text-[10px] tracking-widest">
             &copy; 2026 Build_Status: <span className="text-green-500/70">Operational</span>
           </p>
           <div className="h-px w-8 bg-slate-800" />
         </div>
-        <p className="opacity-50 uppercase">Core_Runtime: WSL2 // React_v19 // Framer_Motion</p>
+        <p className="text-slate-700 text-[10px] opacity-50 uppercase tracking-widest">Core_Runtime: React_v19 // Framer_Motion // TailwindCSS</p>
       </footer>
     </div>
   );
