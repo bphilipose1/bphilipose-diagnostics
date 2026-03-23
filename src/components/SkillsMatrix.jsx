@@ -16,11 +16,12 @@ const skillGroups = [
   {
     category: "Systems & Compute",
     skills: [
-      { name: "C++", level: 98 }, 
-      { name: "CUDA", level: 87 }, 
-      { name: "NPU Optimization", level: 92 }, 
-      { name: "Embedded Systems", level: 95 }, 
-      { name: "SLURM + DDP", level: 95 }, 
+      { name: "C++", level: 98 },
+      { name: "Python", level: 97 },
+      { name: "CUDA", level: 87 },
+      { name: "NPU Optimization", level: 92 },
+      { name: "Embedded Systems", level: 95 },
+      { name: "SLURM + DDP", level: 95 },
       { name: "Linux", level: 97 }
     ]
   },
@@ -73,7 +74,6 @@ export default function SkillsMatrix() {
         <span className="text-blue-500">/</span>_system_capabilities
       </motion.h3>
       
-      {/* Changed to items-stretch to ensure boxes are equal height */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {skillGroups.map((group, i) => (
           <motion.div 
