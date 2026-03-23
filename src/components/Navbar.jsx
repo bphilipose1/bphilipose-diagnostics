@@ -72,8 +72,8 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: '_projects', id: 'projects' },
     { name: '_history', id: 'experience' },
+    { name: '_projects', id: 'projects' },
     { name: '_matrix', id: 'skills' },
   ];
 
