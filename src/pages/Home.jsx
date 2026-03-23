@@ -1,11 +1,14 @@
 import React from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
-import ExperienceTimeline from '../components/Experience/ExperienceTimeline'; 
+import ExperienceTimeline from '../components/Experience/ExperienceTimeline';
 import SkillsMatrix from '../components/SkillsMatrix';
 import EducationBIOS from '../components/EducationBIOS';
 import HeadRender from '../components/HeadRender';
+import ProjectGrid from '../components/ProjectGrid';
+import ProjectArchive from '../components/ProjectArchive';
 import resumeFile from '../assets/Benjamin_Philipose_Resume.pdf';
 import Navbar from '../components/Navbar';
+import { scrollToSection } from '../utils/scroll';
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -13,60 +16,44 @@ export default function Home() {
   const pointerY = useMotionValue(0);
   const glowX = useSpring(pointerX, { stiffness: 180, damping: 28 });
   const glowY = useSpring(pointerY, { stiffness: 180, damping: 28 });
-  
-  // Subtle background parallax
+
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -200]);
 
   const bioStats = [
     { label: "USER_ROLE", value: "ALGORITHMS_ENGINEER_V" },
     { label: "INTERESTS", value: "EMBEDDED_AI // GNNs" },
-    { label: "ENVIRONMENT", value: "LINUX // C++ // CUDA" },
-    { label: "OPTIMIZATION", value: "ML_LATENCY // PERFORMANCE" },
+    { label: "CORE_STACK", value: "C++ // PYTORCH // CUDA" },
+    { label: "OPTIMIZATION", value: "LATENCY // INFERENCE" },
   ];
 
-  // Helper function for the Hero CTA to scroll to projects
-  const scrollToProjects = () => {
-    const element = document.getElementById('projects');
-    if (element) {
-      const offset = 100;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const scrollToProjects = () => scrollToSection('projects');
 
   return (
     <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
-      {/* 00. FIXED SMART NAVBAR */}
+      {/* FLOATING SMART NAVBAR */}
       <Navbar />
-      
-      {/* 🌌 GLOBAL PARALLAX BACKGROUND GRID */}
-      <motion.div 
-        style={{ 
+
+      {/* GLOBAL PARALLAX BACKGROUND GRID */}
+      <motion.div
+        style={{
           y: backgroundY,
-          backgroundImage: 'linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)', 
-          backgroundSize: '60px 60px' 
+          backgroundImage: 'linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
         }}
         className="fixed inset-0 z-0 opacity-20 pointer-events-none"
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20"> 
-        
-        {/* 01. HERO SECTION */}
-        <motion.section 
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-12">
+
+        {/* 01. HERO */}
+        <motion.section
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
         >
           <div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
@@ -79,23 +66,21 @@ export default function Home() {
               <span className="text-blue-500">ML Engineer</span>
             </h2>
             <p className="text-slate-400 text-lg mb-8 max-w-md leading-relaxed">
-              Architecting 3D generative pipelines and optimizing embedded computer vision for resource-constrained hardware.
+              Building high-performance ML systems — from brain-connectivity GNNs to quantized models on embedded NPUs.
             </p>
-            
+
             <div className="flex gap-4 font-mono text-sm">
-              {/* PRIMARY CTA: Initialize Demo */}
-              <button 
+              <button
                 onClick={scrollToProjects}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-500/20 active:scale-95"
               >
                 _initialize_demo
               </button>
-              
-              {/* SECONDARY CTA: Resume */}
-              <a 
+
+              <a
                 href={resumeFile}
                 download="Benjamin_Philipose_Resume.pdf"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="border border-slate-700 hover:border-slate-500 text-slate-300 px-6 py-3 rounded-lg transition-all text-center font-mono"
               >
@@ -103,14 +88,14 @@ export default function Home() {
               </a>
             </div>
           </div>
-          
+
           <div className="aspect-square bg-slate-900 rounded-3xl border border-slate-800 flex items-center justify-center overflow-hidden relative group">
              <HeadRender />
           </div>
         </motion.section>
 
         {/* 02. DEVELOPER BIO */}
-        <section id="projects" className="py-10">
+        <section id="bio" className="py-10">
           <div
             className="relative p-8 md:p-10 bg-slate-950/70 border border-blue-500/20 rounded-2xl font-mono overflow-hidden"
             onMouseMove={(e) => {
@@ -125,8 +110,6 @@ export default function Home() {
               style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
             />
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-            <div className="absolute -top-24 -right-24 w-56 h-56 rounded-full border border-blue-500/10" />
-            <div className="absolute -bottom-28 -left-20 w-72 h-72 rounded-full border border-slate-700/20" />
 
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
@@ -149,9 +132,10 @@ export default function Home() {
               </div>
 
               <p className="text-slate-300 text-sm leading-relaxed max-w-3xl border-l-2 border-blue-500/40 pl-6">
-                I am an Algorithms Engineer focused on building practical machine learning systems from research to deployment.
-                My work spans model development, training, and optimization across PyTorch, C++, and embedded inference pipelines.
-                I enjoy solving applied ML problems where model quality and system performance both matter.
+                I specialize in production ML under extreme constraints — shipping models where latency, memory, and power budgets are non-negotiable.
+                Recent work: 87% latency reduction on embedded NPU inference at Meta, AV simulation synchronization at NIST (75% latency reduction),
+                and fMRI-based autism detection reaching 85.98% accuracy. I own problems end-to-end, from model architecture through C++ deployment,
+                and have led cross-functional teams shipping under real-world hardware limits.
               </p>
             </div>
           </div>
@@ -162,9 +146,10 @@ export default function Home() {
           <ExperienceTimeline />
         </section>
 
-        {/* 04. EDUCATION BIOS */}
-        <section className="py-20">
-          <EducationBIOS />
+        {/* 04. FEATURED PROJECTS */}
+        <section id="projects" className="py-20">
+          <ProjectGrid />
+          <ProjectArchive />
         </section>
 
         {/* 05. SYSTEM SKILLS MATRIX */}
@@ -172,15 +157,11 @@ export default function Home() {
           <SkillsMatrix />
         </section>
 
-        {/* 07. CONTACT TERMINAL */}
-        <footer className="py-20 border-t border-slate-900 text-center relative z-20">
-          <p className="text-slate-500 font-mono text-xs mb-4">TERMINAL_SESSION_END: 2026</p>
-          <div className="flex justify-center gap-8 font-mono text-sm">
-            <a href="mailto:philiposebenjamin@gmail.com" className="text-blue-400 hover:text-white transition-colors underline decoration-blue-500/30 underline-offset-4">email</a>
-            <a href="https://linkedin.com/in/bphilipose" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-white transition-colors underline decoration-blue-500/30 underline-offset-4">linkedin</a>
-            <a href="https://github.com/bphilipose1" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-white transition-colors underline decoration-blue-500/30 underline-offset-4">github</a>
-          </div>
-        </footer>
+        {/* 06. EDUCATION BIOS */}
+        <section className="py-20">
+          <EducationBIOS />
+        </section>
+
       </div>
     </div>
   );
