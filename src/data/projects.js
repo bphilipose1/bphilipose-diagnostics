@@ -55,13 +55,13 @@ export const projectData = [
     id: 5,
     title: "LegalEase",
     tag: "LLMs / RAG",
-    description: "Locally hosted AI chatbot using fine-tuned LLMs and RAG over statutory datasets to automate business structure selection and filing for WA and DE.",
+    description: "Built a locally hosted LLM/RAG assistant for WA and DE business-filing workflows, using statutory grounding and tailored fine-tuning to improve reliability and privacy.",
     metrics: [
       { value: "LLM + RAG", label: "Architecture" },
       { value: "MS Capstone", label: "Project" }
     ],
     stack: ["LLMs", "RAG", "Fine-tuning", "Python", "LangChain"],
     constraint: "LLMs hallucinate on specific legal regulatory requirements, and state-specific business filing rules change frequently — making static training data insufficient for reliable AI-driven recommendations.",
-    implementation: "Engineered a locally hosted chatbot with fine-tuned LLMs and RAG over statutory legal datasets, mitigating hallucinations via data grounding and targeted fine-tuning on regulatory corpora. Built legal document processing pipelines ensuring 100% alignment with WA and DE requirements. Collaborated with an interdisciplinary CS and Law team, optimizing inference for secure local deployment."
+    implementation: "Engineered a locally hosted chatbot with fine-tuned LLMs and RAG over statutory legal datasets, using statutory grounding and targeted fine-tuning to improve reliability. Built legal document-processing pipelines for WA and DE business-filing workflows and collaborated with an interdisciplinary CS and Law team to optimize secure local deployment and privacy."
   }
 ];
