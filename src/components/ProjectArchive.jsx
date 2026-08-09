@@ -7,49 +7,42 @@ const archiveData = [
     title: "Interactive Web App (MongoDB)",
     note: "Full-stack Angular/Node.js app with JWT auth and scalable MongoDB backend",
     tags: ["Angular", "Node.js", "MongoDB", "JWT"],
-    github: "https://github.com/bphilipose1",
   },
   {
     date: "Dec 2024",
     title: "DHT Chord Protocol",
     note: "Scalable P2P system with O(log N) decentralized key lookup and dynamic node management",
     tags: ["Python", "Chord", "Distributed Systems", "TCP"],
-    github: "https://github.com/bphilipose1",
   },
   {
     date: "Nov 2024",
     title: "Forex Arbitrage Detector",
     note: "Real-time negative-cycle detection across live currency exchange graphs via Bellman-Ford",
     tags: ["Python", "Bellman-Ford", "UDP", "Multithreading"],
-    github: "https://github.com/bphilipose1",
   },
   {
     date: "Jun 2024",
     title: "Cloud Spark Search Engine",
     note: "Distributed TF-IDF ranking over large-scale unstructured datasets on AWS EMR",
     tags: ["Apache Spark", "AWS EMR", "TF-IDF", "RDD"],
-    github: "https://github.com/bphilipose1",
   },
   {
     date: "Apr 2024",
     title: "CUDA Sorting & Scanning",
     note: "Parallel Bitonic Sort and Dissemination Prefix Scan with shared-memory optimization",
     tags: ["C++", "CUDA", "Nsight Systems", "SIMD"],
-    github: "https://github.com/bphilipose1",
   },
   {
     date: "Apr 2024",
     title: "Distributed K-Means (MPI)",
     note: "32-process parallel clustering with efficient centroid-sync across partitioned data",
     tags: ["C++", "MPI", "HPC"],
-    github: "https://github.com/bphilipose1",
   },
   {
     date: "Mar 2024",
     title: "Network File System (NFS)",
     note: "Stateless C++ NFS with concurrent client support via TCP sockets and Pthreads",
     tags: ["C++", "TCP", "Pthreads", "Multi-threading"],
-    github: "https://github.com/bphilipose1",
   },
   {
     date: "Dec 2023",
@@ -63,7 +56,6 @@ const archiveData = [
     title: "RISC-V CPU Design",
     note: "Custom 5-stage pipelined CPU with ALU, register file, and control unit in VHDL",
     tags: ["VHDL", "ModelSim", "Ripes", "Computer Architecture"],
-    github: "https://github.com/bphilipose1",
   },
 ];
 
@@ -132,16 +124,21 @@ export default function ProjectArchive() {
               ))}
             </div>
 
-            {/* GitHub link */}
-            <a
-              href={item.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              className="self-center text-right font-mono text-[10px] text-slate-700 group-hover:text-blue-400 hover:text-blue-300 transition-colors duration-150"
-            >
-              github ↗
-            </a>
+            {/* Only show a source link when it points to this specific project. */}
+            <div className="self-center text-right font-mono text-[10px]">
+              {item.github ? (
+                <a
+                  href={item.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-700 group-hover:text-blue-400 hover:text-blue-300 transition-colors duration-150"
+                >
+                  github ↗
+                </a>
+              ) : (
+                <span className="text-slate-700">—</span>
+              )}
+            </div>
           </motion.div>
         ))}
       </div>

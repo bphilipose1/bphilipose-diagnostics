@@ -24,8 +24,9 @@ export default function ProjectCard({ id, title, tag, description, onClick }) {
   };
 
   return (
-    <div
-      className="group cursor-pointer"
+    <button
+      type="button"
+      className="group cursor-pointer text-left w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-400 rounded-2xl"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
@@ -70,6 +71,6 @@ export default function ProjectCard({ id, title, tag, description, onClick }) {
           style={{ transform: "translateZ(-10px)" }}
         />
       </motion.div>
-    </div>
+    </button>
   );
 }

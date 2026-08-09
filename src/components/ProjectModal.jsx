@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DecryptedText from './DecryptedText'; 
 
@@ -18,23 +18,48 @@ const CountUp = ({ value }) => {
 };
 
 export default function ProjectModal({ project, isOpen, onClose }) {
+  const closeButtonRef = useRef(null);
+  const previouslyFocusedElement = useRef(null);
   
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      const focusableElements = document.querySelectorAll(
+        '[role="dialog"] button, [role="dialog"] a[href], [role="dialog"] input, [role="dialog"] select, [role="dialog"] textarea, [role="dialog"] [tabindex]:not([tabindex="-1"])'
+      );
+      const focusable = Array.from(focusableElements).filter((element) => !element.hasAttribute('disabled'));
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     if (isOpen) {
+      previouslyFocusedElement.current = document.activeElement;
+      const previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
-    } else {
-      document.body.style.overflow = 'unset';
+      requestAnimationFrame(() => closeButtonRef.current?.focus());
+
+      return () => {
+        document.body.style.overflow = previousOverflow;
+        window.removeEventListener('keydown', handleKeyDown);
+        previouslyFocusedElement.current?.focus?.();
+      };
     }
 
-    return () => {
-      document.body.style.overflow = 'unset';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
   }, [isOpen, onClose]);
 
   if (!project) return null;
@@ -60,6 +85,9 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
             className="relative z-10 w-full max-w-4xl max-h-[90vh] bg-slate-950 border border-slate-800 rounded-2xl overflow-y-auto shadow-2xl shadow-blue-500/20"
           >
             {/* Header: Initializing Glow Effect */}
@@ -67,7 +95,9 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-scan" />
               
               <button 
+                ref={closeButtonRef}
                 onClick={onClose}
+                aria-label="Close project details"
                 className="absolute top-6 right-6 text-slate-500 hover:text-white font-mono text-[10px] tracking-tighter transition-colors border border-slate-800 hover:border-slate-500 px-2 py-1 rounded bg-slate-900"
               >
                 TERMINATE_PROC [ESC]
@@ -76,7 +106,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               <div className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase mb-2">
                 <DecryptedText text={`${project.tag} // ARCHIVE_0${project.id}`} speed={40} />
               </div>
-              <h2 className="text-4xl font-bold text-white tracking-tight">
+              <h2 id="project-modal-title" className="text-4xl font-bold text-white tracking-tight">
                 {project.title}
               </h2>
             </div>
