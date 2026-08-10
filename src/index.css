@@ -22,3 +22,47 @@
 .glow-blue {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
 }
+
+/* A rare charge surge for high-confidence capability bars. */
+.skill-meter--maxed {
+  position: relative;
+  isolation: isolate;
+}
+
+.skill-meter--maxed::after {
+  position: absolute;
+  z-index: 1;
+  inset: -5px -3px;
+  pointer-events: none;
+  content: '';
+  opacity: 0;
+  background:
+    linear-gradient(105deg, transparent 25%, rgba(96, 165, 250, 0.18) 43%, rgba(191, 219, 254, 0.95) 50%, rgba(96, 165, 250, 0.18) 57%, transparent 75%);
+  filter: blur(1px) drop-shadow(0 0 5px rgba(96, 165, 250, 0.95));
+  transform: translateX(-115%) skewX(-18deg);
+  animation: skill-electric-surge 11s ease-in-out infinite;
+}
+
+.skill-meter--maxed .skill-meter__segment {
+  animation: skill-electric-glow 11s ease-in-out infinite;
+}
+
+@keyframes skill-electric-surge {
+  0%, 76%, 100% { opacity: 0; transform: translateX(-115%) skewX(-18deg); }
+  78% { opacity: 0.7; }
+  81% { opacity: 1; transform: translateX(115%) skewX(-18deg); }
+  83% { opacity: 0.25; transform: translateX(115%) skewX(-18deg); }
+}
+
+@keyframes skill-electric-glow {
+  0%, 76%, 100% { filter: none; }
+  78%, 82% { filter: brightness(1.15) drop-shadow(0 0 3px rgba(96, 165, 250, 0.85)); }
+  80% { filter: brightness(1.7) drop-shadow(0 0 7px rgba(191, 219, 254, 1)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-meter--maxed::after,
+  .skill-meter--maxed .skill-meter__segment {
+    animation: none;
+  }
+}
