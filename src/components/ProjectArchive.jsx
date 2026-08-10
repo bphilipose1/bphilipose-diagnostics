@@ -7,18 +7,21 @@ const archiveData = [
     title: "Interactive Web App (MongoDB)",
     note: "Full-stack Angular/Node.js app with JWT auth and scalable MongoDB backend",
     tags: ["Angular", "Node.js", "MongoDB", "JWT"],
+    github: "https://github.com/bphilipose1/Web_Development",
   },
   {
     date: "Dec 2024",
     title: "DHT Chord Protocol",
     note: "Scalable P2P system with O(log N) decentralized key lookup and dynamic node management",
     tags: ["Python", "Chord", "Distributed Systems", "TCP"],
+    github: "https://github.com/bphilipose1/DistributedHashTable_Implementation",
   },
   {
     date: "Nov 2024",
     title: "Forex Arbitrage Detector",
     note: "Real-time negative-cycle detection across live currency exchange graphs via Bellman-Ford",
     tags: ["Python", "Bellman-Ford", "UDP", "Multithreading"],
+    github: "https://github.com/bphilipose1/distributed-systems-projects/tree/main/real_time_forex_arbitrage_detector",
   },
   {
     date: "Jun 2024",
@@ -31,18 +34,21 @@ const archiveData = [
     title: "CUDA Sorting & Scanning",
     note: "Parallel Bitonic Sort and Dissemination Prefix Scan with shared-memory optimization",
     tags: ["C++", "CUDA", "Nsight Systems", "SIMD"],
+    github: "https://github.com/bphilipose1/parallel-computing-algorithms/tree/main/GPU_ACCEL_SORTING",
   },
   {
     date: "Apr 2024",
     title: "Distributed K-Means (MPI)",
     note: "32-process parallel clustering with efficient centroid-sync across partitioned data",
     tags: ["C++", "MPI", "HPC"],
+    github: "https://github.com/bphilipose1/parallel-computing-algorithms/tree/main/MPI_Clustering_Training",
   },
   {
     date: "Mar 2024",
     title: "Network File System (NFS)",
     note: "Stateless C++ NFS with concurrent client support via TCP sockets and Pthreads",
     tags: ["C++", "TCP", "Pthreads", "Multi-threading"],
+    github: "https://github.com/bphilipose1/simple-network-file-system",
   },
   {
     date: "Dec 2023",
@@ -56,6 +62,7 @@ const archiveData = [
     title: "RISC-V CPU Design",
     note: "Custom 5-stage pipelined CPU with ALU, register file, and control unit in VHDL",
     tags: ["VHDL", "ModelSim", "Ripes", "Computer Architecture"],
+    github: "https://github.com/bphilipose1/single-cycle-riscv-processor",
   },
 ];
 
