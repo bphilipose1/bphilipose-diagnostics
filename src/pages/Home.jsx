@@ -115,9 +115,7 @@ export default function Home() {
               </div>
 
               <p className="text-slate-300 text-sm leading-relaxed max-w-3xl border-l-2 border-blue-500/40 pl-6">
-                I build practical machine-learning systems from research through deployment, with a focus on performance-sensitive and resource-constrained applications.
-                My background spans algorithms, systems software, graph ML, computer vision, and autonomous-systems research.
-                I enjoy work where model quality and engineering discipline matter equally. Selected work here is intentionally presented at a high level; confidential implementation details are omitted.
+                I build practical software and machine-learning systems. This portfolio intentionally shares only public, high-level information; employer, project, and implementation details are omitted.
               </p>
             </div>
           </div>
