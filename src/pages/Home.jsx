@@ -14,14 +14,13 @@ export default function Home() {
   const pointerY = useMotionValue(0);
   const glowX = useSpring(pointerX, { stiffness: 180, damping: 28 });
   const glowY = useSpring(pointerY, { stiffness: 180, damping: 28 });
-
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -200]);
 
-  const bioStats = [
-    { label: "ROLE", value: "ALGORITHMS_ENGINEER" },
-    { label: "FOCUS", value: "ML_SYSTEMS // PERFORMANCE" },
-    { label: "CORE_STACK", value: "C++ // PYTHON // ML" },
-    { label: "INTERESTS", value: "EMBEDDED_AI // GNNs" },
+  const focusAreas = [
+    { label: "Focus", value: "ML Systems & Robotics" },
+    { label: "Strengths", value: "Learning, Control, Performance" },
+    { label: "Core tools", value: "Python, C++, PyTorch, CUDA" },
+    { label: "Experience", value: "Research to Deployment" },
   ];
 
   const scrollToProjects = () => scrollToSection('projects');
@@ -47,30 +46,21 @@ export default function Home() {
           className="py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
         >
           <div>
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4"
-            >
-              System_Status: Active
-            </motion.div>
-            <h2 className="text-5xl font-bold mb-4 text-white leading-tight">
-              Algorithms & <br/>
-              <span className="text-blue-500">ML Systems Engineer</span>
-            </h2>
-            <p className="text-slate-400 text-lg mb-8 max-w-md leading-relaxed">
-              Building practical machine-learning systems where algorithm quality, systems performance, and real-world constraints meet.
+            <p className="text-blue-400 text-sm font-mono mb-4">Benjamin Philipose</p>
+            <h1 className="text-5xl font-bold mb-4 text-white leading-tight">
+              Algorithms Engineer<br />
+              <span className="text-blue-500">ML Systems & Robotics</span>
+            </h1>
+            <p className="text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
+              Building machine-learning, robotics, and systems software for embodied AI and performance-sensitive applications.
             </p>
 
-            <div className="flex gap-4 font-mono text-sm">
-              <button
-                onClick={scrollToProjects}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-500/20 active:scale-95"
-              >
-                _view_work
-              </button>
-            </div>
+            <button
+              onClick={scrollToProjects}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-500/20 active:scale-95 font-mono text-sm"
+            >
+              View selected work
+            </button>
           </div>
 
           <div className="aspect-square bg-slate-900 rounded-3xl border border-slate-800 flex items-center justify-center overflow-hidden relative group">
@@ -80,42 +70,27 @@ export default function Home() {
 
         <section id="bio" className="py-10">
           <div
-            className="relative p-8 md:p-10 bg-slate-950/70 border border-blue-500/20 rounded-2xl font-mono overflow-hidden"
-            onMouseMove={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect();
-              pointerX.set(e.clientX - rect.left);
-              pointerY.set(e.clientY - rect.top);
+            className="relative p-8 md:p-10 bg-slate-950/70 border border-blue-500/20 rounded-2xl overflow-hidden"
+            onMouseMove={(event) => {
+              const rect = event.currentTarget.getBoundingClientRect();
+              pointerX.set(event.clientX - rect.left);
+              pointerY.set(event.clientY - rect.top);
             }}
           >
             <div className="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.25),transparent_45%)]" />
-            <motion.div
-              className="absolute pointer-events-none w-52 h-52 rounded-full bg-blue-400/10 blur-3xl"
-              style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
-            />
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-
+            <motion.div className="absolute pointer-events-none w-52 h-52 rounded-full bg-blue-400/10 blur-3xl" style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }} />
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-6">
-                <h4 className="text-blue-400 text-xs uppercase tracking-[0.3em] font-bold">// Developer_Bio</h4>
-                <span className="text-[10px] text-blue-500/70 border border-blue-500/20 px-2 py-1 rounded">REV_06.0</span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 text-[11px]">
-                {bioStats.map((item) => (
-                  <motion.div
-                    key={item.label}
-                    whileHover={{ y: -3, borderColor: "rgba(59,130,246,0.45)" }}
-                    transition={{ type: "spring", stiffness: 280, damping: 18 }}
-                    className="bg-slate-900/60 border border-slate-800 rounded-lg p-4"
-                  >
+              <h2 className="text-2xl text-white font-semibold mb-5">About</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 text-sm">
+                {focusAreas.map((item) => (
+                  <div key={item.label} className="bg-slate-900/60 border border-slate-800 rounded-lg p-4">
                     <p className="text-slate-500 mb-1">{item.label}</p>
                     <p className="text-slate-200">{item.value}</p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-
-              <p className="text-slate-300 text-sm leading-relaxed max-w-3xl border-l-2 border-blue-500/40 pl-6">
-                I build practical software and machine-learning systems. This portfolio intentionally shares only public, high-level information; employer, project, and implementation details are omitted.
+              <p className="text-slate-300 text-base leading-relaxed max-w-3xl border-l-2 border-blue-500/40 pl-6">
+                I’m an algorithms engineer with experience across machine learning, robotics, simulation, computer vision, and systems programming. I enjoy building practical tools where learning, control, and performance engineering meet.
               </p>
             </div>
           </div>
