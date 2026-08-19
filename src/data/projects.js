@@ -1,67 +1,52 @@
 export const projectData = [
   {
     id: 1,
-    title: "Graph ML for Neuroimaging",
+    title: "Academic ML Research",
     tag: "Research",
-    description: "Academic research exploring graph-learning methods for fMRI connectivity analysis.",
-    metrics: [
-      { value: "GNNs", label: "Modeling" },
-      { value: "Research", label: "Context" }
-    ],
-    stack: ["PyTorch", "GNNs", "Transformers", "CUDA"],
-    constraint: "Functional-connectivity data is naturally relational, so meaningful analysis requires approaches that model both local structure and long-range interactions.",
-    implementation: "Developed and evaluated graph-learning workflows for an academic neuroimaging research project, with attention to model design, training efficiency, and reproducible evaluation."
+    description: "Academic work exploring practical machine-learning methods and evaluation.",
+    metrics: [{ value: "Research", label: "Context" }],
+    stack: ["Machine Learning", "Data Analysis"],
+    constraint: "Applied research benefits from careful experimentation, interpretable evaluation, and reproducible workflows.",
+    implementation: "Developed and evaluated machine-learning approaches in an academic setting. Specific datasets, results, and implementation details are intentionally omitted."
   },
   {
     id: 2,
-    title: "Autonomous Systems Simulation",
+    title: "Systems Research",
     tag: "Systems",
-    description: "Public-sector research on simulation and software tooling for autonomous-vehicle performance assessment.",
-    metrics: [
-      { value: "NIST", label: "Research" },
-      { value: "C++", label: "Systems" }
-    ],
-    stack: ["C++", "Simulation", "Autonomous Systems"],
-    constraint: "Safety-oriented autonomous-systems research needs robust simulation and evaluation methods.",
-    implementation: "Contributed software engineering and simulation research to publicly documented autonomous-vehicle performance assessment work."
+    description: "Research-oriented software work for evaluating complex systems.",
+    metrics: [{ value: "Systems", label: "Focus" }],
+    stack: ["Software Engineering", "Simulation"],
+    constraint: "Complex systems benefit from reliable testing, clear interfaces, and thoughtful evaluation methods.",
+    implementation: "Contributed software engineering work to research projects. Public details are intentionally kept high level."
   },
   {
     id: 3,
-    title: "Embedded ML Systems",
+    title: "Production Engineering",
     tag: "Professional Work",
-    description: "Algorithms and systems work for efficient, real-time machine-learning applications.",
-    metrics: [
-      { value: "ML Systems", label: "Focus" },
-      { value: "Real-Time", label: "Context" }
-    ],
-    stack: ["C++", "Python", "Machine Learning", "Systems Optimization"],
-    constraint: "Production ML systems must balance model quality with latency, memory, power, and reliability constraints.",
-    implementation: "Current professional work focuses on algorithm development and systems performance for resource-constrained ML applications. Specific implementation details are confidential."
+    description: "Current work building efficient software and machine-learning systems.",
+    metrics: [{ value: "Current", label: "Role" }],
+    stack: ["Software Engineering", "Machine Learning"],
+    constraint: "Production systems require quality, reliability, and performance to be balanced responsibly.",
+    implementation: "Current professional work is presented only as a broad role summary. Employer, product, project, metric, and implementation details are confidential."
   },
   {
     id: 4,
-    title: "Robotics Monitoring Prototype",
-    tag: "Robotics",
-    description: "Student capstone prototype combining sensor-processing software with an operator-facing visualization interface.",
-    metrics: [
-      { value: "9-person", label: "Team" },
-      { value: "Capstone", label: "Project" }
-    ],
-    stack: ["C++", "Python", "React", "Computer Vision"],
-    constraint: "A useful robotics prototype needs dependable sensor data handling and a clear way for operators to understand system state.",
-    implementation: "Co-led a student team developing a semi-autonomous monitoring prototype, contributing sensor-processing software and a visualization interface."
+    title: "Student Engineering",
+    tag: "Capstone",
+    description: "Collaborative student engineering work spanning software systems and interactive applications.",
+    metrics: [{ value: "Team", label: "Format" }],
+    stack: ["Software Development", "Systems"],
+    constraint: "Student projects require collaboration across different technical disciplines and clear communication.",
+    implementation: "Co-led and contributed to student engineering prototypes. Project names and technical specifics are intentionally omitted."
   },
   {
     id: 5,
-    title: "LegalEase",
-    tag: "LLMs / RAG",
-    description: "Academic prototype exploring document-grounded assistance for business-filing workflows.",
-    metrics: [
-      { value: "LLM + RAG", label: "Architecture" },
-      { value: "MS Capstone", label: "Project" }
-    ],
-    stack: ["LLMs", "RAG", "Python"],
-    constraint: "High-stakes information workflows need reliable grounding in source documents and clear treatment of uncertainty.",
-    implementation: "Collaborated with an interdisciplinary CS and Law team on an academic RAG prototype for document-grounded assistance and privacy-conscious workflows."
+    title: "Privacy-Conscious AI Capstone",
+    tag: "Academic",
+    description: "An academic project exploring document-grounded AI assistance.",
+    metrics: [{ value: "Capstone", label: "Context" }],
+    stack: ["Machine Learning", "Software Development"],
+    constraint: "Information-assistance systems need careful grounding, privacy considerations, and clear limits.",
+    implementation: "Collaborated on an academic prototype. The public description intentionally excludes domain-specific details and implementation choices."
   }
 ];
