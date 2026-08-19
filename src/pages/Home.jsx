@@ -6,7 +6,6 @@ import EducationBIOS from '../components/EducationBIOS';
 import HeadRender from '../components/HeadRender';
 import ProjectGrid from '../components/ProjectGrid';
 import ProjectArchive from '../components/ProjectArchive';
-import resumeFile from '../assets/Benjamin_Philipose_Resume.pdf';
 import Navbar from '../components/Navbar';
 import { scrollToSection } from '../utils/scroll';
 
@@ -72,16 +71,6 @@ export default function Home() {
               >
                 _view_work
               </button>
-
-              <a
-                href={resumeFile}
-                download="Benjamin_Philipose_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-slate-700 hover:border-slate-500 text-slate-300 px-6 py-3 rounded-lg transition-all text-center font-mono"
-              >
-                _get_resume.pdf
-              </a>
             </div>
           </div>
 
