@@ -100,11 +100,11 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                 aria-label="Close project details"
                 className="absolute top-6 right-6 text-slate-500 hover:text-white font-mono text-[10px] tracking-tighter transition-colors border border-slate-800 hover:border-slate-500 px-2 py-1 rounded bg-slate-900"
               >
-                TERMINATE_PROC [ESC]
+                Close
               </button>
 
               <div className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase mb-2">
-                <DecryptedText text={`${project.tag} // ARCHIVE_0${project.id}`} speed={40} />
+                <DecryptedText text={project.tag} speed={40} />
               </div>
               <h2 id="project-modal-title" className="text-4xl font-bold text-white tracking-tight">
                 {project.title}
@@ -120,7 +120,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                   transition={{ delay: 0.2 }}
                 >
                   <h4 className="text-slate-500 font-mono text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <span className="w-1 h-1 bg-blue-500" /> Validation_Stats
+                    <span className="w-1 h-1 bg-blue-500" /> Overview
                   </h4>
                   <div className="space-y-3">
                     {project.metrics.map((m, idx) => (
@@ -140,7 +140,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                   transition={{ delay: 0.4 }}
                 >
                   <h4 className="text-slate-500 font-mono text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <span className="w-1 h-1 bg-blue-500" /> Dependency_Graph
+                    <span className="w-1 h-1 bg-blue-500" /> Technologies
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map(tech => (
@@ -157,7 +157,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                 <section>
                   <h3 className="text-white font-mono text-sm mb-4 flex items-center gap-3">
                     <span className="text-blue-500">01.</span> 
-                    <DecryptedText text="PROB_CONSTRAINT" speed={50} />
+                    <DecryptedText text="Challenge" speed={50} />
                   </h3>
                   <p className="text-slate-400 text-sm leading-relaxed font-sans border-l-2 border-slate-900 pl-6">
                     {project.constraint}
@@ -167,7 +167,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                 <section>
                   <h3 className="text-white font-mono text-sm mb-4 flex items-center gap-3">
                     <span className="text-blue-500">02.</span> 
-                    <DecryptedText text="EXE_IMPLEMENTATION" speed={50} />
+                    <DecryptedText text="Approach" speed={50} />
                   </h3>
                   <p className="text-slate-400 text-sm leading-relaxed font-sans border-l-2 border-slate-900 pl-6">
                     {project.implementation}
@@ -176,8 +176,8 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                 
                 {/* Visual "Footer" inside modal */}
                 <div className="pt-8 border-t border-slate-900 flex justify-between items-center opacity-30 group-hover:opacity-100 transition-opacity">
-                   <span className="text-[9px] font-mono text-slate-500 uppercase">Status: 0x00_SUCCESS</span>
-                   <span className="text-[9px] font-mono text-slate-500">CRC_LOADED: 100%</span>
+                   <span className="text-[9px] font-mono text-slate-500 uppercase">Selected project</span>
+                   <span className="text-[9px] font-mono text-slate-500">Public overview</span>
                 </div>
               </div>
             </div>
