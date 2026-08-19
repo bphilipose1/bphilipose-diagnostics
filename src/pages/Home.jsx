@@ -20,20 +20,18 @@ export default function Home() {
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -200]);
 
   const bioStats = [
-    { label: "USER_ROLE", value: "ALGORITHMS_ENGINEER_V" },
+    { label: "ROLE", value: "ALGORITHMS_ENGINEER" },
+    { label: "FOCUS", value: "ML_SYSTEMS // PERFORMANCE" },
+    { label: "CORE_STACK", value: "C++ // PYTHON // ML" },
     { label: "INTERESTS", value: "EMBEDDED_AI // GNNs" },
-    { label: "CORE_STACK", value: "C++ // PYTORCH // CUDA" },
-    { label: "OPTIMIZATION", value: "LATENCY // INFERENCE" },
   ];
 
   const scrollToProjects = () => scrollToSection('projects');
 
   return (
     <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
-      {/* FLOATING SMART NAVBAR */}
       <Navbar />
 
-      {/* GLOBAL PARALLAX BACKGROUND GRID */}
       <motion.div
         style={{
           y: backgroundY,
@@ -44,8 +42,6 @@ export default function Home() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-12">
-
-        {/* 01. HERO */}
         <motion.section
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,14 +55,14 @@ export default function Home() {
               transition={{ delay: 0.3 }}
               className="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4"
             >
-              System_Status: Operational
+              System_Status: Active
             </motion.div>
             <h2 className="text-5xl font-bold mb-4 text-white leading-tight">
               Algorithms & <br/>
-              <span className="text-blue-500">ML Engineer</span>
+              <span className="text-blue-500">ML Systems Engineer</span>
             </h2>
             <p className="text-slate-400 text-lg mb-8 max-w-md leading-relaxed">
-              Building high-performance ML systems — from brain-connectivity GNNs to quantized models on embedded NPUs.
+              Building practical machine-learning systems where algorithm quality, systems performance, and real-world constraints meet.
             </p>
 
             <div className="flex gap-4 font-mono text-sm">
@@ -74,7 +70,7 @@ export default function Home() {
                 onClick={scrollToProjects}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-500/20 active:scale-95"
               >
-                _initialize_demo
+                _view_work
               </button>
 
               <a
@@ -90,11 +86,10 @@ export default function Home() {
           </div>
 
           <div className="aspect-square bg-slate-900 rounded-3xl border border-slate-800 flex items-center justify-center overflow-hidden relative group">
-             <HeadRender />
+            <HeadRender />
           </div>
         </motion.section>
 
-        {/* 02. DEVELOPER BIO */}
         <section id="bio" className="py-10">
           <div
             className="relative p-8 md:p-10 bg-slate-950/70 border border-blue-500/20 rounded-2xl font-mono overflow-hidden"
@@ -114,7 +109,7 @@ export default function Home() {
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
                 <h4 className="text-blue-400 text-xs uppercase tracking-[0.3em] font-bold">// Developer_Bio</h4>
-                <span className="text-[10px] text-blue-500/70 border border-blue-500/20 px-2 py-1 rounded">REV_05.0</span>
+                <span className="text-[10px] text-blue-500/70 border border-blue-500/20 px-2 py-1 rounded">REV_06.0</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 text-[11px]">
@@ -132,36 +127,30 @@ export default function Home() {
               </div>
 
               <p className="text-slate-300 text-sm leading-relaxed max-w-3xl border-l-2 border-blue-500/40 pl-6">
-                I specialize in production ML under extreme constraints — shipping models where latency, memory, and power budgets are non-negotiable.
-                Recent work: 87% latency reduction on embedded NPU inference at Meta, AV simulation synchronization at NIST (75% latency reduction),
-                and fMRI-based autism detection reaching 85.98% accuracy. I own problems end-to-end, from model architecture through C++ deployment,
-                and have led cross-functional teams shipping under real-world hardware limits.
+                I build practical machine-learning systems from research through deployment, with a focus on performance-sensitive and resource-constrained applications.
+                My background spans algorithms, systems software, graph ML, computer vision, and autonomous-systems research.
+                I enjoy work where model quality and engineering discipline matter equally. Selected work here is intentionally presented at a high level; confidential implementation details are omitted.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 03. PROFESSIONAL TIMELINE */}
         <section id="experience" className="py-20">
           <ExperienceTimeline />
         </section>
 
-        {/* 04. FEATURED PROJECTS */}
         <section id="projects" className="py-20">
           <ProjectGrid />
           <ProjectArchive />
         </section>
 
-        {/* 05. SYSTEM SKILLS MATRIX */}
         <section id="skills" className="py-20">
           <SkillsMatrix />
         </section>
 
-        {/* 06. EDUCATION BIOS */}
         <section className="py-20">
           <EducationBIOS />
         </section>
-
       </div>
     </div>
   );
