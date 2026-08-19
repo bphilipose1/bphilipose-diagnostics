@@ -1,67 +1,67 @@
 export const projectData = [
   {
-    id: 3,
-    title: "NPU Quantization",
-    tag: "Embedded AI",
-    description: "Production inference pipeline converting PyTorch vision models to quantized TFLite, cutting embedded NPU latency by 87% through model surgery and C++ optimization.",
+    id: 1,
+    title: "Graph ML for Neuroimaging",
+    tag: "Research",
+    description: "Academic research exploring graph-learning methods for fMRI connectivity analysis.",
     metrics: [
-      { value: "87%", label: "Latency Reduction" },
-      { value: "NPU", label: "Target Runtime" }
+      { value: "GNNs", label: "Modeling" },
+      { value: "Research", label: "Context" }
     ],
-    stack: ["C++", "PyTorch", "TFLite", "Netron", "NPU Optimization"],
-    constraint: "High-parameter vision models were too heavy for embedded NPUs; unsupported operators in converted computation graphs blocked reliable fixed-point deployment.",
-    implementation: "Built a production C++ inference pipeline, converted models to quantized TFLite with manual calibration, performed Netron graph surgery to replace unsupported operators, and validated full Python/C++ parity for stable real-time NPU inference. Presented results to multiple Meta VPs."
+    stack: ["PyTorch", "GNNs", "Transformers", "CUDA"],
+    constraint: "Functional-connectivity data is naturally relational, so meaningful analysis requires approaches that model both local structure and long-range interactions.",
+    implementation: "Developed and evaluated graph-learning workflows for an academic neuroimaging research project, with attention to model design, training efficiency, and reproducible evaluation."
   },
   {
     id: 2,
-    title: "AV Simulation",
+    title: "Autonomous Systems Simulation",
     tag: "Systems",
-    description: "High-performance C++ data transfer tool synchronizing NS-3 and ROS2 simulators for AV safety testing, achieving a 75% reduction in latency.",
+    description: "Public-sector research on simulation and software tooling for autonomous-vehicle performance assessment.",
     metrics: [
-      { value: "75%", label: "Latency Reduction" },
-      { value: "NIST", label: "Project" }
+      { value: "NIST", label: "Research" },
+      { value: "C++", label: "Systems" }
     ],
-    stack: ["C++", "ROS2", "NS-3", "MPI"],
-    constraint: "Autonomous vehicle safety testing requires microsecond-level synchronization between a network simulator (NS-3) and a physics simulator (ROS2) — event-driven and real-time semantics are fundamentally mismatched.",
-    implementation: "Architected a high-performance C++ bridge resolving the event-driven/real-time semantic mismatch via efficient state-update pipelines. Leveraged parallel programming and object-oriented design to scale simulation complexity. Results contributed to a NIST colloquium presentation."
+    stack: ["C++", "Simulation", "Autonomous Systems"],
+    constraint: "Safety-oriented autonomous-systems research needs robust simulation and evaluation methods.",
+    implementation: "Contributed software engineering and simulation research to publicly documented autonomous-vehicle performance assessment work."
   },
   {
-    id: 1,
-    title: "fMRI GNNs",
-    tag: "Neuroscience",
-    description: "Hybrid GCN + Community-Aware Transformer achieving 85.98% accuracy on autism detection from non-Euclidean fMRI brain-connectivity graphs.",
+    id: 3,
+    title: "Embedded ML Systems",
+    tag: "Professional Work",
+    description: "Algorithms and systems work for efficient, real-time machine-learning applications.",
     metrics: [
-      { value: "85.98%", label: "Accuracy" },
-      { value: "GCN/CAT", label: "Architecture" }
+      { value: "ML Systems", label: "Focus" },
+      { value: "Real-Time", label: "Context" }
     ],
-    stack: ["PyTorch", "GNNs", "Transformers", "CUDA"],
-    constraint: "Standard CNNs struggle with non-Euclidean brain connectivity. Accurate autism diagnosis requires modeling complex regional interactions encoded in fMRI functional connectivity graphs.",
-    implementation: "Implemented a hybrid Graph Convolutional Network (GCN) and Community-Aware Transformer (CAT) to capture both local connectivity and long-range functional communities. Optimized data throughput with custom CUDA kernels, improving training convergence and reducing diagnosis time by 30%."
+    stack: ["C++", "Python", "Machine Learning", "Systems Optimization"],
+    constraint: "Production ML systems must balance model quality with latency, memory, power, and reliability constraints.",
+    implementation: "Current professional work focuses on algorithm development and systems performance for resource-constrained ML applications. Specific implementation details are confidential."
   },
   {
     id: 4,
-    title: "AWS Availability Rover",
+    title: "Robotics Monitoring Prototype",
     tag: "Robotics",
-    description: "Semi-autonomous data center monitoring robot with LiDAR + thermal sensor fusion, real-time React visualization UI, and structured multi-threaded C++/Python pipelines.",
+    description: "Student capstone prototype combining sensor-processing software with an operator-facing visualization interface.",
     metrics: [
-      { value: "9-person", label: "Team Led" },
-      { value: "LiDAR + Thermal", label: "Sensor Fusion" }
+      { value: "9-person", label: "Team" },
+      { value: "Capstone", label: "Project" }
     ],
-    stack: ["C++", "Python", "React", "LiDAR", "OpenCV", "MySQL"],
-    constraint: "Data center monitoring requires reliable autonomous navigation, real-time server rack health visualization, and consistent barcode scanning across high-density, electromagnetically noisy environments.",
-    implementation: "Developed semi-autonomous robotic carts integrating LiDAR and thermal imaging for data center monitoring. Built a multi-threaded C++/Python sensor-processing framework with structured logging, a React UI for real-time visualization of sensor outputs and server health, and led a cross-functional team of 9 engineers through Agile scrum cycles with AWS stakeholders."
+    stack: ["C++", "Python", "React", "Computer Vision"],
+    constraint: "A useful robotics prototype needs dependable sensor data handling and a clear way for operators to understand system state.",
+    implementation: "Co-led a student team developing a semi-autonomous monitoring prototype, contributing sensor-processing software and a visualization interface."
   },
   {
     id: 5,
     title: "LegalEase",
     tag: "LLMs / RAG",
-    description: "Built a locally hosted LLM/RAG assistant for WA and DE business-filing workflows, using statutory grounding and tailored fine-tuning to improve reliability and privacy.",
+    description: "Academic prototype exploring document-grounded assistance for business-filing workflows.",
     metrics: [
       { value: "LLM + RAG", label: "Architecture" },
       { value: "MS Capstone", label: "Project" }
     ],
-    stack: ["LLMs", "RAG", "Fine-tuning", "Python", "LangChain"],
-    constraint: "LLMs hallucinate on specific legal regulatory requirements, and state-specific business filing rules change frequently — making static training data insufficient for reliable AI-driven recommendations.",
-    implementation: "Engineered a locally hosted chatbot with fine-tuned LLMs and RAG over statutory legal datasets, using statutory grounding and targeted fine-tuning to improve reliability. Built legal document-processing pipelines for WA and DE business-filing workflows and collaborated with an interdisciplinary CS and Law team to optimize secure local deployment and privacy."
+    stack: ["LLMs", "RAG", "Python"],
+    constraint: "High-stakes information workflows need reliable grounding in source documents and clear treatment of uncertainty.",
+    implementation: "Collaborated with an interdisciplinary CS and Law team on an academic RAG prototype for document-grounded assistance and privacy-conscious workflows."
   }
 ];
