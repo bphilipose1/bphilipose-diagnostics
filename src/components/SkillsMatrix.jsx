@@ -2,115 +2,40 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skillGroups = [
-  {
-    category: "Intelligence",
-    skills: [
-      { name: "PyTorch", level: 96 }, 
-      { name: "TensorFlow", level: 88 },
-      { name: "GNNs", level: 76 }, 
-      { name: "Transformers", level: 90 },
-      { name: "TFLite Quantization", level: 92 }, 
-      { name: "LLMs / RAG", level: 90 }
-    ]
-  },
-  {
-    category: "Systems & Compute",
-    skills: [
-      { name: "C++", level: 98 },
-      { name: "Python", level: 97 },
-      { name: "CUDA", level: 87 },
-      { name: "NPU Optimization", level: 92 },
-      { name: "Embedded Systems", level: 95 },
-      { name: "SLURM + DDP", level: 95 },
-      { name: "Linux", level: 97 }
-    ]
-  },
-  {
-    category: "Cloud & Data",
-    skills: [
-      { name: "AWS (SageMaker/EMR)", level: 83 },
-      { name: "Apache Spark", level: 88 }, 
-      { name: "MongoDB", level: 85 }, 
-      { name: "ROS2 / NS-3", level: 86 },
-      { name: "Docker/K8s", level: 90 },
-      { name: "SQL/NoSQL", level: 85 }
-    ]
-  }
+  { category: "Machine Learning", skills: ["Machine Learning", "Computer Vision", "Deep Learning", "Data Analysis"] },
+  { category: "Systems Engineering", skills: ["C++", "Python", "Performance Engineering", "Linux", "Parallel Computing"] },
+  { category: "Software Development", skills: ["Distributed Systems", "Web Development", "Databases", "Cloud Fundamentals"] }
 ];
 
 export default function SkillsMatrix() {
-  const getStatusLabel = (val) => {
-    if (val >= 95) return "MAX_EFFICIENCY";
-    if (val >= 90) return "OPTIMIZED";
-    if (val >= 80) return "STABLE";
-    return "DEPLOYED";
-  };
-
   return (
     <div className="py-24 w-full text-white overflow-hidden">
-      <motion.h3 
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        className="text-2xl font-mono mb-12 text-white flex items-center gap-3"
-      >
+      <motion.h3 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} className="text-2xl font-mono mb-12 text-white flex items-center gap-3">
         <span className="text-blue-500">/</span>_system_capabilities
       </motion.h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {skillGroups.map((group, i) => (
-          <motion.div 
-            key={i}
+          <motion.div
+            key={group.category}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
             className="flex flex-col p-8 bg-slate-900/20 rounded-2xl border border-slate-800/50 hover:border-blue-500/30 transition-all group relative overflow-hidden backdrop-blur-sm"
           >
-            <motion.h4 
-              className="text-blue-500 font-mono text-[10px] uppercase tracking-[0.2em] mb-10 flex justify-between relative z-10"
-            >
+            <div className="text-blue-500 font-mono text-[10px] uppercase tracking-[0.2em] mb-10 flex justify-between relative z-10">
               <span>{group.category}</span>
-              <span className="text-slate-600 group-hover:text-blue-400 transition-colors">
-                [ {group.skills.length} UNITS ]
-              </span>
-            </motion.h4>
-
-            <div className="space-y-8 relative z-10 flex-grow">
-              {group.skills.map((skill, j) => (
-                <div key={j} className="space-y-3">
-                  <div className="flex justify-between items-end text-[10px] font-mono">
-                    <span className="text-slate-300 uppercase tracking-widest">{skill.name}</span>
-                    <span className={`font-bold ${
-                      skill.level >= 95 ? 'text-blue-300 animate-pulse' : 'text-slate-500'
-                    }`}>
-                      {getStatusLabel(skill.level)}
-                    </span>
-                  </div>
-                  
-                  <div className={`skill-meter flex gap-1 h-1.5 w-full ${skill.level >= 95 ? 'skill-meter--maxed' : ''}`}>
-                    {[...Array(10)].map((_, step) => {
-                      const isActive = (step * 10) < skill.level;
-                      
-                      return (
-                        <div
-                          key={step}
-                          className={`skill-meter__segment h-full flex-1 rounded-full transition-all duration-500 ${
-                            isActive 
-                              ? 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)]' 
-                              : 'bg-slate-800/50'
-                          }`}
-                        />
-                      );
-                    })}
-                  </div>
+              <span className="text-slate-600 group-hover:text-blue-400 transition-colors">[ {group.skills.length} AREAS ]</span>
+            </div>
+            <div className="space-y-4 relative z-10 flex-grow">
+              {group.skills.map((skill) => (
+                <div key={skill} className="border-l border-slate-700 pl-3 text-[11px] font-mono text-slate-300 uppercase tracking-widest">
+                  {skill}
                 </div>
               ))}
             </div>
-
-            {/* Background Decoration */}
-            <div className="absolute -bottom-4 -right-2 text-7xl font-mono text-slate-800/10 pointer-events-none group-hover:text-blue-500/5 transition-colors">
-              0{i + 1}
-            </div>
+            <div className="absolute -bottom-4 -right-2 text-7xl font-mono text-slate-800/10 pointer-events-none group-hover:text-blue-500/5 transition-colors">0{i + 1}</div>
           </motion.div>
         ))}
       </div>
