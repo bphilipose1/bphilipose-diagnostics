@@ -5,7 +5,6 @@ import SkillsMatrix from '../components/SkillsMatrix';
 import EducationBIOS from '../components/EducationBIOS';
 import HeadRender from '../components/HeadRender';
 import ProjectGrid from '../components/ProjectGrid';
-import ProjectArchive from '../components/ProjectArchive';
 import Navbar from '../components/Navbar';
 import { scrollToSection } from '../utils/scroll';
 
@@ -130,7 +129,6 @@ export default function Home() {
 
         <section id="projects" className="py-20">
           <ProjectGrid />
-          <ProjectArchive />
         </section>
 
         <section id="skills" className="py-20">
