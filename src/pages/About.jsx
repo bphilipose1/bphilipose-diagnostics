@@ -4,86 +4,40 @@ import EducationBIOS from '../components/EducationBIOS';
 import SkillsMatrix from '../components/SkillsMatrix';
 
 export default function About() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
-    <motion.div 
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       className="max-w-4xl mx-auto px-6 py-20"
     >
-      <motion.div variants={itemVariants}>
+      <div>
         <h2 className="text-3xl font-mono text-white mb-2 underline decoration-blue-500 underline-offset-8">
-          _system_diagnostics
+          _about
         </h2>
         <p className="text-slate-400 font-mono text-sm mb-12 flex items-center gap-2">
           <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          Execution of academic and technical profiling... [DONE]
+          Professional profile // public overview
         </p>
-      </motion.div>
+      </div>
 
       <section className="space-y-16">
-        {/* The Credentials */}
-        <motion.div variants={itemVariants}>
-          <EducationBIOS />
-        </motion.div>
+        <EducationBIOS />
+        <SkillsMatrix />
 
-        {/* The Toolset */}
-        <motion.div variants={itemVariants}>
-          <SkillsMatrix />
-        </motion.div>
-
-        {/* The Personal Specs / Bio */}
-        <motion.div 
-          variants={itemVariants}
-          className="p-8 bg-slate-900/30 border border-slate-800 rounded-xl font-mono relative overflow-hidden group"
-        >
-          {/* Decorative Corner Accent */}
-          <div className="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-100 transition-opacity">
-            <span className="text-[10px] text-blue-500">REV_04.2</span>
-          </div>
-
+        <div className="p-8 bg-slate-900/30 border border-slate-800 rounded-xl font-mono">
           <h4 className="text-blue-400 text-xs uppercase mb-6 tracking-[0.3em] font-bold">
-            // Developer_Bio
+            // Professional_Summary
           </h4>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 border-b border-slate-800 pb-8 text-[11px]">
-             <div>
-               <p className="text-slate-500 mb-1">USER_ROLE</p>
-               <p className="text-slate-200">ALGORITHMS_ENGINEER_V</p>
-             </div>
-             <div>
-               <p className="text-slate-500 mb-1">INTERESTS</p>
-               <p className="text-slate-200">EMBEDDED_AI // GNNs</p>
-             </div>
-             <div>
-               <p className="text-slate-500 mb-1">ENVIRONMENT</p>
-               <p className="text-slate-200">LINUX // C++ // CUDA</p>
-             </div>
-             <div>
-               <p className="text-slate-500 mb-1">OPTIMIZATION</p>
-               <p className="text-slate-200">ML_LATENCY // PERFORMANCE</p>
-             </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 border-b border-slate-800 pb-8 text-[11px]">
+            <div><p className="text-slate-500 mb-1">ROLE</p><p className="text-slate-200">SOFTWARE & ML ENGINEER</p></div>
+            <div><p className="text-slate-500 mb-1">FOCUS</p><p className="text-slate-200">SYSTEMS // ML</p></div>
+            <div><p className="text-slate-500 mb-1">APPROACH</p><p className="text-slate-200">PRACTICAL // RESPONSIBLE</p></div>
           </div>
-
           <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
-            I am an Algorithms Engineer focused on building practical machine learning systems from research to deployment.
-            My work spans model development, training, and optimization across PyTorch, C++, and embedded inference pipelines.
-            I enjoy solving applied ML problems where model quality and system performance both matter.
+            I build practical software and machine-learning systems, drawing on experience in research, systems engineering, and collaborative development.
+            This site intentionally shares only public, high-level information; employer, project, and implementation details are omitted.
           </p>
-        </motion.div>
+        </div>
       </section>
     </motion.div>
   );
