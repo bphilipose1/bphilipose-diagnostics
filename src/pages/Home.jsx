@@ -43,15 +43,15 @@ export default function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center"
+          className="py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center"
         >
           <div>
             <p className="text-blue-400 text-sm font-mono mb-4">Benjamin Philipose</p>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-white leading-tight">
-              Algorithms Engineer<br />
-              <span className="text-blue-500">ML Systems & Robotics</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white leading-[1.08] tracking-tight">
+              <span className="block">Algorithms Engineer</span>
+              <span className="block text-blue-500">ML Systems & Robotics</span>
             </h1>
-            <p className="text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
+            <p className="text-slate-300 text-base md:text-lg mb-7 max-w-xl leading-relaxed">
               Building machine-learning, robotics, and systems software for embodied AI and performance-sensitive applications.
             </p>
 
