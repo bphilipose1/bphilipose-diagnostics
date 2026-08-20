@@ -35,7 +35,7 @@ export default function Home() {
           backgroundImage: 'linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)',
           backgroundSize: '60px 60px'
         }}
-        className="fixed inset-0 z-0 opacity-20 pointer-events-none"
+        className="fixed inset-0 z-0 opacity-[0.08] md:opacity-[0.14] pointer-events-none"
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-12">
@@ -43,11 +43,11 @@ export default function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          className="py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center"
         >
           <div>
             <p className="text-blue-400 text-sm font-mono mb-4">Benjamin Philipose</p>
-            <h1 className="text-5xl font-bold mb-4 text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-white leading-tight">
               Algorithms Engineer<br />
               <span className="text-blue-500">ML Systems & Robotics</span>
             </h1>
@@ -63,7 +63,7 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="aspect-square bg-slate-900 rounded-3xl border border-slate-800 flex items-center justify-center overflow-hidden relative group">
+          <div className="w-full max-w-md mx-auto aspect-[4/5] md:aspect-square bg-slate-900 rounded-3xl border border-slate-800 flex items-center justify-center overflow-hidden relative group">
             <HeadRender />
           </div>
         </motion.section>
