@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import ProjectPage from "./pages/ProjectPage";
-import SystemStatusBar from "./components/SystemStatusBar";
 import NotFound from "./pages/NotFound";
 
 function RestoreGitHubPagesRedirect() {
@@ -15,8 +14,7 @@ function RestoreGitHubPagesRedirect() {
 
     window.sessionStorage.removeItem("redirect");
     const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-    if (redirect === basePath || redirect.startsWith(`${basePath}/`)) {
+    if (redirect === basePath || redirect.startsWith(basePath + "/")) {
       navigate(redirect.slice(basePath.length) || "/", { replace: true });
     }
   }, [navigate]);
@@ -28,7 +26,6 @@ function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <RestoreGitHubPagesRedirect />
-      <SystemStatusBar />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
