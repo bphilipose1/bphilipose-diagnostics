@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import profileImg from '../assets/profile.jpg';
+const profileImg = 'https://raw.githubusercontent.com/bphilipose1/bphilipose-diagnostics/main/src/assets/profile.jpg';
 
 export default function HeadRender() {
   const mouseX = useMotionValue(0);
